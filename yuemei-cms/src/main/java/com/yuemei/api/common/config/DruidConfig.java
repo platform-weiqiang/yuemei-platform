@@ -12,7 +12,7 @@ import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 
 @Configuration
-public class DruidConfiguration {
+public class DruidConfig {
 
 	@Bean
     @ConfigurationProperties(prefix="spring.datasource")
