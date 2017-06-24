@@ -39,14 +39,14 @@
                         <div class="form-group">
                             <div class="checkbox-custom checkbox-primary">
                                 <input type="checkbox" id="remember-me" value="option1" checked>
-                                <label for="remember-me">Remember me</label>
+                                <label for="remember-me">记住我</label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <a href="index.html" class="btn btn-primary btn-block">Sign in</a>
+                            <a href="index.html" class="btn btn-primary btn-block">登陆</a>
                         </div>
                         <div class="form-group text-center">
-                            <a href="pages_forgot-password.html">Forgot password?</a>
+                            <a href="pages_forgot-password.html">忘记密码</a>
                         </div>
                     </form>
                 </div>
