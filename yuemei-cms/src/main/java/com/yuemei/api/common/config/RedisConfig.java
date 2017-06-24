@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @EnableCaching
-public class ShiroConfig extends CachingConfigurerSupport{
+public class RedisConfig extends CachingConfigurerSupport{
 
 	/**
      * 生成key的策略
