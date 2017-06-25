@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,8 +30,11 @@ public class BeautifulPicturesController {
 	}
 	
 	@RequestMapping("/login")
-	public String login(){
-		return "login";
+	public String login(@RequestParam(required = true, defaultValue = "1") Integer pageNum,ModelMap map){
+		PageHelper.startPage(pageNum, 9);// 默认从第一页开始，每页五条
+		List<BeautifulPictures> list=beautifulPicturesService.queryList();
+		map.addAttribute("pic", list);
+		return "index";
 	}
 
 }

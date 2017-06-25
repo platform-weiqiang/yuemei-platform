@@ -16,12 +16,10 @@ public class Application extends SpringBootServletInitializer implements Command
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Application.class);
 	}
-
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("springboot启动完成！");

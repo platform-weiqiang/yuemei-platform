@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yuemei.api.admin.mapper.BeautifulPicturesMapper">
 	<select id="queryList" resultType="com.yuemei.api.admin.entity.BeautifulPictures">
-		SELECT * FROM beautiful_pictures
+		SELECT DISTINCT bp.id,bp.title,bp.pictureurls_num AS pictureurlsNum,bp.zan,bp.biaoqian,bp.keywords,p.url,
+		bp.last_update_date AS lastUpdateDate FROM beautiful_pictures bp LEFT JOIN picture p ON bp.id=p.pictures_id
   	</select>
 </mapper>
