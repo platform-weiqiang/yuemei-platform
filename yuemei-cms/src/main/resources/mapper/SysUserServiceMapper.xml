@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuemei.api.admin.mapper.SysUserServiceMapper">
+	<!-- 通用查询映射结果 -->
+	<resultMap id="sysUserMap" type="com.yuemei.api.admin.entity.SysUser">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="password" property="password" />
+	</resultMap>
+	
+	<select id="selectByMap" parameterType="java.util.Map" resultMap="sysUserMap">
+		SELECT * FROM sys_user WHERE nickname=#{nickname} AND pswd=#{pswd}
+  	</select>
+</mapper>

@@ -22,7 +22,7 @@ public class BeautifulPicturesController {
 	private BeautifulPicturesService beautifulPicturesService;
 	
 	
-	@RequestMapping("/index")
+	@RequestMapping("/pic")
 	@ResponseBody
 	public PageInfo<BeautifulPictures> index(@RequestParam(required = true, defaultValue = "1") Integer pageNum){
 		PageHelper.startPage(pageNum, 9);// 默认从第一页开始，每页五条
@@ -31,7 +31,7 @@ public class BeautifulPicturesController {
 		return pageUser;
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/pic2")
 	public String login(@RequestParam(required = true, defaultValue = "1") Integer pageNum,ModelMap map){
 		PageHelper.startPage(pageNum, 9);// 默认从第一页开始，每页五条
 		List<BeautifulPictures> list=beautifulPicturesService.queryList();
