@@ -16,6 +16,7 @@
 	<script th:src="@{vendor/nano-scroller/nano-scroller.js}"></script>
 	<script th:src="@{javascripts/template-script.min.js}"></script>
 	<script th:src="@{javascripts/template-init.min.js}"></script>
+	<script th:src="@{javascripts/bootstrap-paginator.min.js}"></script>
 </head>
 <body>
 <div class="wrap">
@@ -30,7 +31,7 @@
                 </div>
             </div>
             <div class="row animated fadeInUp">
-                <div class="col-sm-6 col-md-4 " th:each="pic:${pic}">
+                <div class="col-sm-6 col-md-4 " th:each="pic:${pic.list}">
                     <div class="panel widget-post">
                         <div class="panel-header">
                             <img class="btn-animated" th:id="${pic.id}" alt="streat" th:src="${pic.url}" height="262px" width="392px"/>
@@ -49,11 +50,41 @@
                     </div>
                 </div>
             </div>
+            <div id="example" style="text-align: center">
+                	<ul id="pageLimit" th:attr="data-pageinfo=${pic}"></ul>
+             </div>
         </div>
     </div>
 </div>
+
 </body>
 <script type="text/javascript">
+$(function(){
+   var pageInfo=JSON.parse($("#pageLimit").attr("data-pageinfo"));
+   $('#pageLimit').bootstrapPaginator({
+	    currentPage: pageInfo.pageNum,    
+	    totalPages: pageInfo.total,    
+	    bootstrapMajorVersion: 3,    
+	    alignment:"right",    
+	    numberOfPages:6,
+	    totalPages:pageInfo.pages,
+	    itemTexts: function (type, page, current) {        
+	        switch (type) {            
+	        case "first": return "首页";            
+	        case "prev": return "上一页";            
+	        case "next": return "下一页";            
+	        case "last": return "末页";            
+	        case "page": return page;
+	        }
+	    },
+	     onPageClicked: function (event, originalEvent, type, page) {
+	    	 window.location = "/login?pageNum="+page;
+	    }
+   });
+});
+
+
+
 $.fn.extend({
     animateCss: function(animationName) {
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
