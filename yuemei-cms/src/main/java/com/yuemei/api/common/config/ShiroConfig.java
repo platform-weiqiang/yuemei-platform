@@ -16,7 +16,11 @@ import org.apache.shiro.codec.Base64;
 import com.yuemei.api.admin.entity.SysPermissionInit;
 import com.yuemei.api.admin.service.SysPermissionInitService;
 import com.yuemei.api.common.config.service.KickoutSessionControlFilter;
+import com.yuemei.api.common.config.service.MShiroFilterFactoryBean;
 import com.yuemei.api.common.config.service.MyShiroRealm;
+
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +53,7 @@ public class ShiroConfig {
 	 */
 	@Bean
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
-		ShiroFilterFactoryBean shiroFilterFactoryBean=new ShiroFilterFactoryBean();
+		ShiroFilterFactoryBean shiroFilterFactoryBean=new MShiroFilterFactoryBean();
 		// 必须设置 SecurityManager
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		// 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
@@ -63,6 +67,7 @@ public class ShiroConfig {
 		//限制同一帐号同时在线的个数。
 		filtersMap.put("kickout",  kickoutSessionControlFilter());
 		shiroFilterFactoryBean.setFilters(filtersMap);
+		
 		// 权限控制map.
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
 		// 配置不会被拦截的链接 顺序判断
@@ -77,6 +82,8 @@ public class ShiroConfig {
 		for (SysPermissionInit sysPermissionInit : list) {
 			filterChainDefinitionMap.put(sysPermissionInit.getUrl(),sysPermissionInit.getPermissionInit());
 		}
+		filterChainDefinitionMap.put("/webjars/**", "anon");
+		filterChainDefinitionMap.put("/login", "anon");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 		
@@ -179,6 +186,11 @@ public class ShiroConfig {
        return cookieRememberMeManager;
     }
     
+    @Bean
+    public ShiroDialect shiroDialect(){
+        return new ShiroDialect();
+    }
+    
     /**
      * 限制同一账号登录同时登录人数控制
      * @return
@@ -199,19 +211,4 @@ public class ShiroConfig {
     	kickoutSessionControlFilter.setKickoutUrl("/kickout");
         return kickoutSessionControlFilter;
      }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
