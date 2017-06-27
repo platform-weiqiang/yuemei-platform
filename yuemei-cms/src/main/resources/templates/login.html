@@ -10,8 +10,9 @@
     <link rel="icon" type="image/png" sizes="16x16" th:href="@{favicon/favicon-16x16.png}"/>
     <link rel="stylesheet" type="text/css" th:href="@{stylesheets/css/bootstrap.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{stylesheets/css/font-awesome.min.css}"/>
-    <link rel="stylesheet" th:href="@{vendor/animate.css/animate.css}"/>
+    <link rel="stylesheet" th:href="@{vendor/animate/animate.css}"/>
     <link rel="stylesheet" th:href="@{stylesheets/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{stylesheets/css/common.css}"/>
     <script th:src="@{javascripts/jquery.min.js}"></script>
 	<script th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
 	<script th:src="@{vendor/nano-scroller/nano-scroller.js}"></script>
@@ -30,27 +31,33 @@
                     <form>
                         <div class="form-group mt-md">
                             <span class="input-with-icon">
-                                    <input type="email" class="form-control" id="email" placeholder="Email"/>
-                                    <i class="fa fa-envelope"></i>
+                                <input type="email" class="form-control" id="username" placeholder="请输入您的账户"/>
+                                <i class="fa fa-user-o"></i>
                             </span>
                         </div>
                         <div class="form-group">
-                                <span class="input-with-icon">
-                                        <input type="password" class="form-control" id="password" placeholder="Password"/>
-                                        <i class="fa fa-key"></i>
-                                    </span>
+                             <span class="input-with-icon">
+                                <input type="password" class="form-control" id="password" placeholder="请输入账户密码"/>
+                                <i class="fa fa-key"></i>
+                             </span>
                         </div>
                         <div class="form-group">
-                            <div class="checkbox-custom checkbox-primary">
-                                <input type="checkbox" id="remember-me" value="option1" checked="checked"/>
-                                <label for="remember-me">Remember me</label>
+                             <span class="input-with-icon" style="display:inline-block;">
+                                <input type="text" class="form-control12" id="password" placeholder="请输入验证码"/>
+                                <i class="fa fa-filter"></i>
+                             </span>
+                             <img th:src="@{/getGifCode}" style="float:right;"/>
+                        </div>
+                       <div class="form-group" style="padding-left: 20px">
+                            <div class="checkbox">
+                                <input type="checkbox" id="remember-me" checked="checked"/>记住我
                             </div>
                         </div>
                         <div class="form-group">
-                            <a href="#" class="btn btn-primary btn-block">Sign in</a>
+                            <a href="#" class="btn btn-primary btn-block">登 陆</a>
                         </div>
                         <div class="form-group text-center">
-                            <a href="#">Forgot password?</a>
+                            <a href="#">忘记密码</a>
                         </div>
                     </form>
                 </div>
@@ -59,4 +66,7 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+
+</script>
 </html>
