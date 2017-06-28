@@ -82,8 +82,6 @@ public class ShiroConfig {
 		for (SysPermissionInit sysPermissionInit : list) {
 			filterChainDefinitionMap.put(sysPermissionInit.getUrl(),sysPermissionInit.getPermissionInit());
 		}
-		filterChainDefinitionMap.put("/webjars/**", "anon");
-		filterChainDefinitionMap.put("/login", "anon");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 		
