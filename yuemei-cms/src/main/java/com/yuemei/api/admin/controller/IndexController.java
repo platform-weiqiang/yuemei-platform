@@ -95,4 +95,6 @@ public class IndexController {
 			System.err.println("获取验证码异常："+e.getMessage());
 		}
 	}
+	
+	
 }

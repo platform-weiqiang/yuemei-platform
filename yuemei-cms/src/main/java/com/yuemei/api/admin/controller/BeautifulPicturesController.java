@@ -37,7 +37,7 @@ public class BeautifulPicturesController {
 		List<BeautifulPictures> list=beautifulPicturesService.queryList();
 		PageInfo<BeautifulPictures> pageUser = new PageInfo<BeautifulPictures>(list);// 将users对象绑定到pageInfo
 		map.addAttribute("pic", JSON.toJSON(pageUser));
-		return "index";
+		return "common/common-title";
 	}
 
 }
