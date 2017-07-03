@@ -1,7 +1,8 @@
- <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<html xmlns:th="http://www.thymeleaf.org">
+<head/>
+    <!-- layout文件路径-->
    <body>
-      <section>
+   <aside th:fragment="content">
 			<div class="content">
             <div class="content-header">
                 <div class="leftside-content-header">
@@ -275,6 +276,6 @@
                 </div>
             </div>
         </div>
- </section>
+        </aside>
  </body>
  </html>

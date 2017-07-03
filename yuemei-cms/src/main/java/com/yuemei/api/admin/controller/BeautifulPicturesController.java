@@ -22,13 +22,12 @@ public class BeautifulPicturesController {
 	private BeautifulPicturesService beautifulPicturesService;
 	
 	
-	@RequestMapping("/pic")
-	@ResponseBody
-	public PageInfo<BeautifulPictures> index(@RequestParam(required = true, defaultValue = "1") Integer pageNum){
-		PageHelper.startPage(pageNum, 9);// 默认从第一页开始，每页五条
+	@RequestMapping("/favorites/pic")
+	public String index(@RequestParam(required = true, defaultValue = "1") Integer pageNum){
+		/*PageHelper.startPage(pageNum, 9);// 默认从第一页开始，每页五条
 		List<BeautifulPictures> list=beautifulPicturesService.queryList();
 		PageInfo<BeautifulPictures> pageUser = new PageInfo<BeautifulPictures>(list);// 将users对象绑定到pageInfo
-		return pageUser;
+*/		return "common/content";
 	}
 	
 	@RequestMapping("/pic2")
