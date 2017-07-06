@@ -42,16 +42,6 @@
 		    <artifactId>pagehelper</artifactId>
 		    <version>4.1.0</version>
 		</dependency>
-		<dependency>
-		    <groupId>org.webjars.bower</groupId>
-		    <artifactId>bootstrap</artifactId>
-		    <version>3.3.6</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.webjars.bower</groupId>
-		    <artifactId>jquery</artifactId>
-		    <version>2.2.4</version>
-		</dependency>
 		<!-- java HTML解析器，获取document对象 -->
 		<dependency>
 			<groupId>org.jsoup</groupId>

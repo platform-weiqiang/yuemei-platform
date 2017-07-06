@@ -63,15 +63,6 @@ function deleteCookie(name){
 	document.cookie=name+"=v; expires="+date.toGMTString(); 
 }
 
-function getFileName(param){
-	　　var myFile = document.getElementById(param).value;
-	　　var length = myFile.length;
-	　　var x = myFile.lastIndexOf("\\");
-	　　x++;
-	　　var fileName = myFile.substring(x,length);
-		$("#"+param + "Name").val(fileName);
-	　　}
-
 function locationUrl(url,activeId){
 	if(mainActiveId != null && mainActiveId != "" && activeId != null && activeId != ""){
 		$("#"+mainActiveId).removeAttr("class");
@@ -132,7 +123,6 @@ function fixUrl(url, params){
 		}
 	}
 }
-
 function handleServerResponse() {
 	if (xmlhttp.readyState == 4) {
 		//document.getElementById("mainSection").innerHTML =xmlhttp.responseText;
@@ -145,46 +135,9 @@ function handleServerResponse() {
 	}
 }
 
-function smartFavoritesFun(title,description,selectLabelName){
-    $.ajax({
-        type: "POST",
-        url:"/collect/getFavoriteResult",
-        data:{'title':title,'description':description},
-        success: function(maps) {
-            var favoritesStr = "";
-            for(var i = 0; i < maps.favoritesList.length; i++){
-                if(maps.favoritesList[i].id == maps.favoritesResult){
-                    favoritesStr += "<a id=\"smartFavorites" + maps.favoritesList[i].id + "\""
-                        + " href=\"javascript:void(0);\" class=\"active\" onclick=\"switchFavorites(this.id,\'" + selectLabelName + "\'" + ")\">"
-                        + maps.favoritesList[i].name + "</a>";
-                }else{
-                    favoritesStr += "<a id=\"smartFavorites" + maps.favoritesList[i].id + "\""
-                        + " href=\"javascript:void(0);\" onclick=\"switchFavorites(this.id,\'" + selectLabelName + "\'" + ")\">"
-                        + maps.favoritesList[i].name + "</a>";
-                }
-            }
-            $("#smartFavoritesList").append(favoritesStr);
-            $("#"+selectLabelName).val(maps.favoritesResult);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR.responseText);
-            console.log(jqXHR.status);
-            console.log(jqXHR.readyState);
-            console.log(jqXHR.statusText);
-            console.log(textStatus);
-            console.log(errorThrown);
-        }
-    });
-}
-function switchFavorites(id,selectLabelName){
-    var favoritesId = id.substring(14);
-    $("#"+selectLabelName).val(favoritesId);
-}
-
 var jiathis_config = {};
 function share(url,title,description,pic){
 	description = description + "    -分享自云收藏http://favorites.ren/";
-
 	jiathis_config.data_track_clickback=true;
 	jiathis_config.url=url;
 	jiathis_config.pic=pic;

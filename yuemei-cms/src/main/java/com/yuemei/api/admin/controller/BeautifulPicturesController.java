@@ -23,19 +23,16 @@ public class BeautifulPicturesController {
 	
 	
 	@RequestMapping("/favorites/pic")
-	public String index(@RequestParam(required = true, defaultValue = "1") Integer pageNum){
-		/*PageHelper.startPage(pageNum, 9);// 默认从第一页开始，每页五条
-		List<BeautifulPictures> list=beautifulPicturesService.queryList();
-		PageInfo<BeautifulPictures> pageUser = new PageInfo<BeautifulPictures>(list);// 将users对象绑定到pageInfo
-*/		return "home/content";
-	}
-	
-	@RequestMapping("/pic2")
-	public String login(@RequestParam(required = true, defaultValue = "1") Integer pageNum,ModelMap map){
+	public String index(@RequestParam(required = true, defaultValue = "1") Integer pageNum,ModelMap map){
 		PageHelper.startPage(pageNum, 9);// 默认从第一页开始，每页五条
 		List<BeautifulPictures> list=beautifulPicturesService.queryList();
 		PageInfo<BeautifulPictures> pageUser = new PageInfo<BeautifulPictures>(list);// 将users对象绑定到pageInfo
 		map.addAttribute("pic", JSON.toJSON(pageUser));
+		return "home/pictures";
+	}
+	
+	@RequestMapping("/pic2")
+	public String login(@RequestParam(required = true, defaultValue = "1") Integer pageNum){
 		return "layout";
 	}
 
