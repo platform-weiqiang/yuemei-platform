@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<aside class="aside" th:fragment="left">
+<aside th:fragment="left">
     <div class="page-body">
         <div class="left-sidebar">
             <div class="left-sidebar-header">
@@ -28,7 +28,7 @@
                                     <li class="has-child-item close-item">
                                         <a>Notifications</a>
                                         <ul class="nav child-nav level-2 ">
-                                            <li><a th:href="@{/favorites/pic}">测试的发热打卡机</a></li>
+                                            <li><a href="javascript:void(0);" onclick="locationUrl('/favorites/pic','tool')">低啊牛的好多个</a></li>
                                             <li><a href="ui-elements_notifications-toastr.html">Toastr</a></li>
                                         </ul>
                                     </li>

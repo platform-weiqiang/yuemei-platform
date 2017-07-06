@@ -27,7 +27,7 @@ public class BeautifulPicturesController {
 		/*PageHelper.startPage(pageNum, 9);// 默认从第一页开始，每页五条
 		List<BeautifulPictures> list=beautifulPicturesService.queryList();
 		PageInfo<BeautifulPictures> pageUser = new PageInfo<BeautifulPictures>(list);// 将users对象绑定到pageInfo
-*/		return "common/content";
+*/		return "home/content";
 	}
 	
 	@RequestMapping("/pic2")
