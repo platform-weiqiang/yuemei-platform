@@ -57,12 +57,10 @@ $(function(){
 	        }
 	    },
 	     onPageClicked: function (event, originalEvent, type, page) {
-	    	 window.location = "/login?pageNum="+page;
+	    	locationUrl('/favorites/pic?pageNum='+page,'tool');
 	    }
    });
 });
-
-
 
 $.fn.extend({
     animateCss: function(animationName) {

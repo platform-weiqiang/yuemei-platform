@@ -74,7 +74,7 @@ function locationUrl(url,activeId){
 
 var xmlhttp = new getXMLObject();
 function goUrl(url,params) {
-	fixUrl(url,params);
+//	fixUrl(url,params);
 	if(xmlhttp) {
 		//var params = "";
 		xmlhttp.open("POST",url,true);
