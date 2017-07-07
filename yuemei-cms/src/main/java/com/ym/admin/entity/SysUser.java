@@ -1,6 +1,7 @@
 package com.ym.admin.entity;
 
 import java.util.Date;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.ym.common.page.PageVO;
 import java.io.Serializable;
 
@@ -15,6 +16,7 @@ public class SysUser extends PageVO implements Serializable{
     private String password;
     private String headImgUrl;
     private int status;
+   // @JSONField (format="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     private Date updateTime;
     
