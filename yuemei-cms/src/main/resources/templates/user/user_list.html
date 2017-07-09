@@ -33,31 +33,28 @@
                 <div field="create_time" width="100" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort="true">创建日期</div>      -->
                 <!--<div type="indexcolumn"></div>        -->
 	            <div type="checkcolumn" ></div>        
-	            <div field="loginname" width="120" headerAlign="center" allowSort="true">员工帐号</div>    
+	            <div field="loginname" width="120" align="center" headerAlign="center" allowSort="true">员工帐号</div>    
 	            <div field="name" width="120" headerAlign="center" allowSort="true">姓名</div>    
 	            <div header="工作信息" headerAlign="center">
 	                <div property="columns">
-	                    <div field="dept_name" width="120" headerAlign="center">所属部门</div>
-	                    <div field="position_name" width="100" headerAlign="center">职位</div>
-	                    <div field="salary" dataType="currency" currencyUnit="￥" headerAlign="center" width="100" allowSort="true">薪资</div>
+	                    <div field="company_id" width="120" headerAlign="center">所属公司</div>
+	                    <div field="department_id" width="100" headerAlign="center">所属部门</div>
+	                    <div field="post_id" headerAlign="center" width="100">所属岗位</div>
+	                    <div field="work_address" headerAlign="center" width="100">工作地址</div>
 	                </div>
 	            </div>
-	            <div field="createtime" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true">创建日期</div>    
 	            <div header="基本信息" headerAlign="center">
 	                <div property="columns">
-	                    <div field="gender" width="100" renderer="onGenderRenderer" headerAlign="center">性别</div>
-	                    <div field="age" width="100" allowSort="true" headerAlign="center">年龄</div>
+	                    <div field="sex" width="50" renderer="onGenderRenderer" headerAlign="center">性别</div>
+	                    <div field="education_id" width="100" headerAlign="center">学历</div>
+	                    <div field="tel" width="100" headerAlign="center">手机号码</div>
 	                    <div field="birthday" width="100" renderer="onBirthdayRenderer" headerAlign="center">出生日期</div>
-	                    <div field="married" width="100" align="center" renderer="onMarriedRenderer" headerAlign="center">婚否</div>
+	                    <div field="address" width="100" align="center" headerAlign="center">家庭地址</div>
 	                    <div field="email" width="100" headerAlign="center">邮箱</div>
 	                </div>
 	            </div>
-	            <div header="学历信息" headerAlign="center">
-	                <div property="columns">
-	                    <div field="educational_name" width="100" headerAlign="center">学历</div>
-	                    <div field="school" width="120" headerAlign="center">毕业院校</div>
-	                </div>
-	            </div>  
+	            <div field="status" width="60" headerAlign="center" allowSort="true">状态</div>  
+	            <div field="createtime" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true">创建日期</div>   
             </div>
         </div> 
     </div>
@@ -78,7 +75,7 @@
         function add() {
         	mini.open({
         	    url: bootPATH + "../user/addUserPage",
-        	    title: "新增用户", width: 600, height: 400,
+        	    title: "新增用户", width: 480, height: 350,
         	    onload: function () {
         	        var iframe = this.getIFrameEl();
         	        var data = { action: "new"};

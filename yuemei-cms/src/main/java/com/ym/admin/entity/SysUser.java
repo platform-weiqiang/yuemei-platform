@@ -10,7 +10,7 @@ public class SysUser extends PageVO implements Serializable{
     private static final long serialVersionUID = 1L;
     
     private Integer id;
-    private String nickname;
+    private String loginname;
     private String name;
     private String email;
     private String tel;
@@ -97,12 +97,6 @@ public class SysUser extends PageVO implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -145,5 +139,11 @@ public class SysUser extends PageVO implements Serializable{
 	}
 	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
+	}
+	public String getLoginname() {
+		return loginname;
+	}
+	public void setLoginname(String loginname) {
+		this.loginname = loginname;
 	}
 }
