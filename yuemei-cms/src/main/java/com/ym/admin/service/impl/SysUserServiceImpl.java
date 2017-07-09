@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ym.admin.entity.Department;
+import com.ym.admin.entity.Dictionary;
 import com.ym.admin.entity.SysUser;
 import com.ym.admin.mapper.SysUserMapper;
 import com.ym.admin.service.SysUserService;
@@ -23,6 +24,20 @@ public class SysUserServiceImpl implements SysUserService {
 	@Override
 	public List<Department> selectDepartmentByTree() {
 		return sysUserMapper.selectDepartmentByTree();
+	}
+
+	@Override
+	public List<Dictionary> slectByDictionaryList() {
+		return sysUserMapper.slectByDictionaryList();
+	}
+
+	@Override
+	public void addDictionary(Dictionary dictionary) {
+		if (dictionary.getId()==null) {
+			sysUserMapper.addDictionary(dictionary);
+		}else{
+			sysUserMapper.updateDictionary(dictionary);
+		}
 	}
 
 }

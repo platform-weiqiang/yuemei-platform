@@ -25,15 +25,43 @@
     <div class="mini-fit" >
         <div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;" url="/user/slectByUser"  idField="id" sizeList="[5,10,20,50]" pageSize="10">
             <div property="columns">
-                <div field="id" headerAlign="center" align="center"  allowSort="true">序号</div>
+               <!--  <div field="id" headerAlign="center" align="center"  allowSort="true">序号</div>
                 <div field="nickname" width="120" align="center" headerAlign="center" allowSort="false">用户帐号</div>    
                 <div field="email" width="120" align="center" headerAlign="center" allowSort="false">用户邮箱</div>                            
                 <div field="tel" width="100" align="center" headerAlign="center">手机</div>
                 <div field="status" width="100" headerAlign="center" align="center" renderer="onStatus" allowSort="true">状态</div>                                    
-                <div field="create_time" width="100" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort="true">创建日期</div>                
+                <div field="create_time" width="100" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort="true">创建日期</div>      -->
+                <!--<div type="indexcolumn"></div>        -->
+	            <div type="checkcolumn" ></div>        
+	            <div field="loginname" width="120" headerAlign="center" allowSort="true">员工帐号</div>    
+	            <div field="name" width="120" headerAlign="center" allowSort="true">姓名</div>    
+	            <div header="工作信息" headerAlign="center">
+	                <div property="columns">
+	                    <div field="dept_name" width="120" headerAlign="center">所属部门</div>
+	                    <div field="position_name" width="100" headerAlign="center">职位</div>
+	                    <div field="salary" dataType="currency" currencyUnit="￥" headerAlign="center" width="100" allowSort="true">薪资</div>
+	                </div>
+	            </div>
+	            <div field="createtime" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true">创建日期</div>    
+	            <div header="基本信息" headerAlign="center">
+	                <div property="columns">
+	                    <div field="gender" width="100" renderer="onGenderRenderer" headerAlign="center">性别</div>
+	                    <div field="age" width="100" allowSort="true" headerAlign="center">年龄</div>
+	                    <div field="birthday" width="100" renderer="onBirthdayRenderer" headerAlign="center">出生日期</div>
+	                    <div field="married" width="100" align="center" renderer="onMarriedRenderer" headerAlign="center">婚否</div>
+	                    <div field="email" width="100" headerAlign="center">邮箱</div>
+	                </div>
+	            </div>
+	            <div header="学历信息" headerAlign="center">
+	                <div property="columns">
+	                    <div field="educational_name" width="100" headerAlign="center">学历</div>
+	                    <div field="school" width="120" headerAlign="center">毕业院校</div>
+	                </div>
+	            </div>  
             </div>
         </div> 
     </div>
+    
     <script type="text/javascript">
         mini.parse();
         var grid = mini.get("datagrid1");

@@ -32,4 +32,16 @@ public class PageController {
 	public String slectByTree(){
 		return "/common/department";
 	}
+	
+	//数据字典
+	@RequestMapping("/dictionary/slectByPage")
+	public String slectByDictionaryPage(){
+		return "/common/dictionary";
+	}
+	//数据字典
+	@RequestMapping("/dictionary/addDictionaryPage")
+	public String addDictionaryPage(){
+		return "/common/dictionary_add";
+	}
+	
 }

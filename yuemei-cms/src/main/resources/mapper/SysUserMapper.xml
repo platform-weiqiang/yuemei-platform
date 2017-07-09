@@ -8,4 +8,12 @@
   	<select id="selectDepartmentByTree" resultType="com.ym.admin.entity.Department">
 		SELECT * FROM department
   	</select>
+  	
+  	<select id="slectByDictionaryList" resultType="com.ym.admin.entity.Dictionary">
+		SELECT * FROM data_dictionary
+  	</select>
+  	
+  	<insert id="addDictionary">  
+        insert into data_dictionary (name,code,date_desc,create_date,num) values (#{name},#{code},#{date_desc},NOW(),#{num})  
+    </insert> 
 </mapper>
