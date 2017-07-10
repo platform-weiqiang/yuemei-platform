@@ -4,6 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
     <script th:src="@{/scripts/boot.js}" type="text/javascript"></script>
+    <script th:src="@{/scripts/utils/vtype.js}" type="text/javascript"></script>
 </head>
 <body>    
     <form id="form1" method="post">
@@ -13,35 +14,31 @@
                 <tr>
                     <td style="width:70px;">员工帐号：</td>
                     <td style="width:150px;">    
-                        <input name="loginname" class="mini-textbox" required="true"  emptyText="请输入员工帐号"/>
+                        <input name="loginname" class="mini-textbox" required="true" vtype="english" emptyText="请输入员工帐号"/>
                     </td>
                     <td style="width:70px;">员工姓名：</td>
                     <td style="width:150px;">    
-                        <input name="name" class="mini-textbox" required="true"  emptyText="请输入员工姓名"/>
+                        <input name="name" class="mini-textbox" required="true" onvalidation="onChineseValidation"  emptyText="请输入员工姓名"/>
                     </td>
                 </tr>
                 <tr>
                    	<td style="width:70px;">所属公司：</td>
                     <td style="width:150px;">    
-                        <input name="company_id" class="mini-combobox" valueField="id" textField="name" 
-                         url="/selectCompany/list" onvaluechanged="onDeptChanged" required="true" emptyText="请选择所属公司"/>
+                        <input name="company_id" class="mini-combobox" valueField="id" textField="dept_name" url="/selectCompany/list" onvaluechanged="onCompanyChanged" required="true" emptyText="请选择所属公司"/>
                     </td>
                     <td style="width:70px;">所属部门：</td>
                     <td style="width:150px;">    
-                        <input name="department_id" class="mini-combobox" valueField="id" textField="name" 
-                         url="../data/AjaxService.jsp?method=GetDepartments" onvaluechanged="onDeptChanged" required="true" emptyText="请选择所属部门"/>
+                        <input name="department_id" class="mini-combobox" onvaluechanged="onDeptChanged" valueField="id" textField="dept_name" required="true" emptyText="请选择所属部门"/>
                     </td>
                 </tr>
                 <tr>
                 	<td style="width:70px;">所属岗位：</td>
                     <td style="width:150px;">    
-                        <input name="post_id" class="mini-combobox" valueField="id" textField="name" 
-                         url="../data/AjaxService.jsp?method=GetDepartments" onvaluechanged="onDeptChanged" required="true" emptyText="请选择所属岗位"/>
+                        <input name="post_id" class="mini-combobox" valueField="id" textField="dept_name"  required="true" emptyText="请选择所属岗位"/>
                     </td>
                 	<td style="width:70px;">工作地点：</td>
-                    <td style="width:150px;">    
-                        <input name="address" class="mini-combobox" valueField="id" textField="name" 
-                         url="../data/AjaxService.jsp?method=GetDepartments" onvaluechanged="onDeptChanged" required="true" emptyText="请选择工作地点"/>
+                    <td style="width:150px;"> 
+                   		<input name="address" class="mini-textbox" required="true"  emptyText="请输入工作地点"/>   
                     </td>
                 </tr>
             </table>
@@ -53,7 +50,7 @@
             <tr>
             	<td >手机号码：</td>
                 <td >    
-                    <input name="tel" class="mini-textbox" trueValue="1" falseValue="0" />
+                    <input name="tel" class="mini-textbox" onvalidation="onTelValidation" required="true" emptyText="请输入手机号码"/>
                 </td>
                 <td >出生日期：</td>
                 <td >    
@@ -63,12 +60,11 @@
             <tr>
                 <td style="width:70px;">电子邮箱：</td>
                 <td style="width:150px;">    
-                    <input name="email" class="mini-textbox" required="true"/>
+                    <input name="email" class="mini-textbox" required="true" vtype="email" emptyText="请输入电子邮箱"/>
                 </td>
                 <td style="width:70px;">最高学历：</td>
                 <td style="width:150px;">    
-                   <input name="education_id" class="mini-combobox" valueField="id" textField="name" 
-                   url="../data/AjaxService.jsp?method=GetDepartments" onvaluechanged="onDeptChanged" required="true" emptyText="请选择部门"/>
+                   <input name="education_id" class="mini-combobox" valueField="id" textField="name" url="/selectEducation/list" required="true" emptyText="请选择学历"/>
                 </td>
             </tr>
             <tr>
@@ -83,14 +79,14 @@
                 <td >                        
                     <select name="status" class="mini-radiobuttonlist">
                         <option value="1">有效</option>
-                        <option value="2">无效</option>
+                        <option value="0">无效</option>
                     </select>
                 </td>
             </tr>     
             <tr>
                 <td >备注：</td>
                 <td colspan="3">    
-                    <input name="remarks" class="mini-textarea" style="width:370px;" />
+                    <input name="remarks" class="mini-textarea" style="width:380px;" emptyText="请输入描述信息"/>
                 </td>
             </tr>          
         </table>            
@@ -102,17 +98,17 @@
         </div>        
     </form>
     <script type="text/javascript">
-   /*      mini.parse();
+   		mini.parse();
         var form = new mini.Form("form1");
         function SaveData() {
             var o = form.getData();            
             form.validate();
             if (form.isValid() == false) return;
-
-            var json = mini.encode([o]);
+            var json = mini.encode(o);
+            alert(json);
             $.ajax({
-                url: "../data/AjaxService.jsp?method=SaveEmployees",
-		type: 'post',
+                url: "/sysUser/add",
+				type: 'post',
                 data: { data: json },
                 cache: false,
                 success: function (text) {
@@ -127,7 +123,7 @@
 
         ////////////////////
         //标准方法接口定义
-        function SetData(data) {
+        /* function SetData(data) {
             if (data.action == "edit") {
                 //跨页面传递的数据对象，克隆后才可以安全使用
                 data = mini.clone(data);
@@ -145,7 +141,7 @@
                     }
                 });
             }
-        }
+        } */
 
         function GetData() {
             var o = form.getData();
@@ -166,13 +162,22 @@
         function onCancel(e) {
             CloseWindow("cancel");
         }
-        //////////////////////////////////
-        function onDeptChanged(e) {
-            var deptCombo = mini.getbyName("dept_id");
-            var positionCombo = mini.getbyName("position");
+        
+        function onCompanyChanged(e) {
+            var deptCombo = mini.getbyName("company_id");
+            var positionCombo = mini.getbyName("department_id");
+            var postCombo = mini.getbyName("post_id");
             var dept_id = deptCombo.getValue();
-            positionCombo.load("../data/AjaxService.jsp?method=GetPositionsByDepartmenId&id=" + dept_id);
+            positionCombo.load("../selectCompany/list?id=" + dept_id);
             positionCombo.setValue("");
-        } */
+            postCombo.setValue("");
+        }
+        function onDeptChanged(e) {
+            var deptCombo = mini.getbyName("department_id");
+            var positionCombo = mini.getbyName("post_id");
+            var dept_id = deptCombo.getValue();
+            positionCombo.load("../selectCompany/list?id=" + dept_id);
+            positionCombo.setValue("");
+        }
 </script>
 </body>

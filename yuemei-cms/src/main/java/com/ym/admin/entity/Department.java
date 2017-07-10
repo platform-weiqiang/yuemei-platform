@@ -13,6 +13,7 @@ public class Department implements Serializable{
 	private Integer id;
 	private Integer parent_id;//父级id
 	private String code;//编码
+	private int level;//等级
 	private String dept_name;//部门名称
 	private Integer num;//排序
 	
@@ -45,5 +46,11 @@ public class Department implements Serializable{
 	}
 	public void setNum(Integer num) {
 		this.num = num;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
 	}
 }

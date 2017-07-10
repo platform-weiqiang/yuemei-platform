@@ -18,4 +18,8 @@ public interface SysUserMapper {
 
 	void updateDictionary(Dictionary dictionary);
 
+	void addSysUser(SysUser user);
+
+	void updateSysUser(SysUser user);
+
 }

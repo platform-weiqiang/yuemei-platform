@@ -3,7 +3,6 @@ package com.ym.admin.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.ym.admin.entity.Department;
 import com.ym.admin.entity.Dictionary;
 import com.ym.admin.entity.SysUser;
@@ -37,6 +36,15 @@ public class SysUserServiceImpl implements SysUserService {
 			sysUserMapper.addDictionary(dictionary);
 		}else{
 			sysUserMapper.updateDictionary(dictionary);
+		}
+	}
+
+	@Override
+	public void addSysUser(SysUser user) {
+		if (user.getId()==null) {
+			sysUserMapper.addSysUser(user);
+		}else {
+			sysUserMapper.updateSysUser(user);
 		}
 	}
 

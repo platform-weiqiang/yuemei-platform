@@ -40,6 +40,19 @@ public class AdminController {
 	}
 	
 	/**
+	 * 添加员工信息
+	 * @param data
+	 * @return
+	 */
+	@RequestMapping(value="/sysUser/add",method = RequestMethod.POST)
+	public String addSysUser(String data){
+		SysUser user=JSONObject.parseObject(data,SysUser.class);
+		user.setPassword("123456");
+		sysUserService.addSysUser(user);
+		return "ok";
+	}
+	
+	/**
 	 * 部门列表
 	 * @return
 	 */
@@ -68,7 +81,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 
+	 * 添加数据字典
 	 * @param dictionary
 	 * @param pageResult
 	 * @return

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ym.admin.mapper.CommonMapper">
-	
+	<select id="selectCompanyList" parameterType="java.lang.Integer" resultType="com.ym.admin.entity.Department">
+		SELECT * FROM department WHERE parent_id=#{id}
+  	</select>
+  	
+  	<select id="selectEducationList" resultType="com.ym.admin.entity.Dictionary">
+		SELECT * FROM data_dictionary WHERE code='Education' ORDER BY num ASC
+  	</select>
 </mapper>

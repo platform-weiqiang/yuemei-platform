@@ -16,5 +16,7 @@ public interface SysUserService {
 
 	void addDictionary(Dictionary dictionary);
 
+	void addSysUser(SysUser user);
+
 
 }

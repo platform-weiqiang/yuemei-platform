@@ -28,7 +28,7 @@ public class SysUser extends PageVO implements Serializable{
     @JSONField (format="yyyy-MM-dd HH:mm:ss")
     private Date create_time;
     private Date update_time;
-    private String desc;
+    private String remarks;
     
 	public String getName() {
 		return name;
@@ -65,12 +65,6 @@ public class SysUser extends PageVO implements Serializable{
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public String getDesc() {
-		return desc;
-	}
-	public void setDesc(String desc) {
-		this.desc = desc;
 	}
 	public Integer getId() {
 		return id;
@@ -138,5 +132,11 @@ public class SysUser extends PageVO implements Serializable{
 	}
 	public void setPost_id(String post_id) {
 		this.post_id = post_id;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 }
