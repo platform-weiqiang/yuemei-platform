@@ -40,7 +40,7 @@
 	                    <div field="company_id" width="120" headerAlign="center">所属公司</div>
 	                    <div field="department_id" width="100" headerAlign="center">所属部门</div>
 	                    <div field="post_id" headerAlign="center" width="100">所属岗位</div>
-	                    <div field="work_address" headerAlign="center" width="100">工作地址</div>
+	                    <div field="work_address" headerAlign="center" width="100">工作地点</div>
 	                </div>
 	            </div>
 	            <div header="基本信息" headerAlign="center">
@@ -49,7 +49,6 @@
 	                    <div field="education_id" width="100" headerAlign="center">学历</div>
 	                    <div field="tel" width="100" headerAlign="center">手机号码</div>
 	                    <div field="birthday" width="100" renderer="onBirthdayRenderer" headerAlign="center">出生日期</div>
-	                    <div field="address" width="100" align="center" headerAlign="center">家庭地址</div>
 	                    <div field="email" width="100" headerAlign="center">邮箱</div>
 	                </div>
 	            </div>
@@ -75,7 +74,7 @@
         function add() {
         	mini.open({
         	    url: bootPATH + "../user/addUserPage",
-        	    title: "新增用户", width: 480, height: 350,
+        	    title: "新增用户", width: 480, height: 360,
         	    onload: function () {
         	        var iframe = this.getIFrameEl();
         	        var data = { action: "new"};

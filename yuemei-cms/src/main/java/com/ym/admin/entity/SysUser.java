@@ -16,13 +16,12 @@ public class SysUser extends PageVO implements Serializable{
     private String tel;
     private String password;
     private int sex;
-    private String area_id;
-    private String city_id;
-    private String rovince_id;
+    private String post_id;
     @JSONField (format="yyyy-MM-dd")
     private Date birthday;
-    private Integer education_id;
-    private Integer department_id;
+    private String company_id;
+    private String education_id;
+    private String department_id;
     private String address;
     private String head_img_url;
     private int status;
@@ -43,40 +42,22 @@ public class SysUser extends PageVO implements Serializable{
 	public void setSex(int sex) {
 		this.sex = sex;
 	}
-	public String getArea_id() {
-		return area_id;
-	}
-	public void setArea_id(String area_id) {
-		this.area_id = area_id;
-	}
-	public String getCity_id() {
-		return city_id;
-	}
-	public void setCity_id(String city_id) {
-		this.city_id = city_id;
-	}
-	public String getRovince_id() {
-		return rovince_id;
-	}
-	public void setRovince_id(String rovince_id) {
-		this.rovince_id = rovince_id;
-	}
 	public Date getBirthday() {
 		return birthday;
 	}
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	public Integer getEducation_id() {
+	public String getEducation_id() {
 		return education_id;
 	}
-	public void setEducation_id(Integer education_id) {
+	public void setEducation_id(String education_id) {
 		this.education_id = education_id;
 	}
-	public Integer getDepartment_id() {
+	public String getDepartment_id() {
 		return department_id;
 	}
-	public void setDepartment_id(Integer department_id) {
+	public void setDepartment_id(String department_id) {
 		this.department_id = department_id;
 	}
 	public String getAddress() {
@@ -145,5 +126,17 @@ public class SysUser extends PageVO implements Serializable{
 	}
 	public void setLoginname(String loginname) {
 		this.loginname = loginname;
+	}
+	public String getCompany_id() {
+		return company_id;
+	}
+	public void setCompany_id(String company_id) {
+		this.company_id = company_id;
+	}
+	public String getPost_id() {
+		return post_id;
+	}
+	public void setPost_id(String post_id) {
+		this.post_id = post_id;
 	}
 }
