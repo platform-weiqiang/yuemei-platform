@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ym.admin.mapper.SysUserMapper">
 	<select id="selectByList" resultType="com.ym.admin.entity.SysUser">
-		SELECT * FROM sys_user
+		SELECT u.id,u.name,u.loginname,u.email,u.tel,u.sex,u.address,u.status,u.birthday,u.create_time,
+		dc.name AS education_id,d.dept_name AS company_id,de.dept_name AS department_id,dept.dept_name AS post_id 
+		FROM sys_user u LEFT JOIN data_dictionary dc ON u.education_id=dc.id
+		LEFT JOIN department d ON u.company_id=d.id LEFT JOIN department de ON u.department_id=de.id
+		LEFT JOIN department dept ON u.post_id=dept.id
   	</select>
   	
   	<select id="selectDepartmentByTree" resultType="com.ym.admin.entity.Department">
