@@ -48,4 +48,13 @@ public class SysUserServiceImpl implements SysUserService {
 		}
 	}
 
+	@Override
+	public Dictionary getDictionaryById(Integer id) {
+		return sysUserMapper.getDictionaryById(id);
+	}
+
+	@Override
+	public void deleteDictionaryById(Integer[] id) {
+		sysUserMapper.deleteDictionaryById(id);
+	}
 }

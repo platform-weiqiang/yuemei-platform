@@ -18,8 +18,20 @@
   	</select>
   	
   	<insert id="addDictionary">  
-        insert into data_dictionary (name,code,date_desc,create_date,num) values (#{name},#{code},#{date_desc},NOW(),#{num})  
+        insert into data_dictionary (name,code,date_desc,status,create_date,num) values (#{name},#{code},#{date_desc},#{status},NOW(),#{num})  
     </insert> 
+    
+    <update id="updateDictionary" parameterType="com.ym.admin.entity.Dictionary">
+    	UPDATE data_dictionary
+		 <trim prefix="set" suffixOverrides=",">
+		  <if test="name!=null">name=#{name},</if>
+		  <if test="code!=null">code=#{code},</if>
+		  <if test="status!=null">status=#{status},</if>
+		  <if test="date_desc!=null">date_desc=#{date_desc},</if>
+		  <if test="num!=null">num=#{num},</if>
+		 </trim>
+ 		 WHERE id=#{id}
+    </update>
     
     <insert id="addSysUser">
     	insert into sys_user (
@@ -31,4 +43,15 @@
     		#{post_id},#{birthday},#{education_id},#{company_id},#{department_id},
     		#{address},#{head_img_url},#{remarks},#{status},NOW(),update_time)  
     </insert>
+    
+    <select id="getDictionaryById" parameterType="java.lang.Integer" resultType="com.ym.admin.entity.Dictionary">
+    	SELECT * FROM data_dictionary WHERE id=#{id}
+    </select>
+    
+    <delete id="deleteDictionaryById" parameterType="java.lang.Integer">
+    	 DELETE FROM data_dictionary WHERE id IN
+    	 <foreach collection="array" item="id" index="index" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+    </delete>
 </mapper>

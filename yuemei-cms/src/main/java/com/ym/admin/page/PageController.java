@@ -15,33 +15,39 @@ public class PageController {
 		return "index";
 	}
 	
-	//用户列表
+	//查询用户列表
 	@RequestMapping("/user/slectByPage")
 	public String selectUserPage(){
 		return "/user/user_list";
 	}
 	
-	//用户列表
+	//添加用户列表
 	@RequestMapping("/user/addUserPage")
 	public String addUserPage(){
 		return "/user/user_add";
 	}
 	
-	//部门列表
+	//部门列表ZTree
 	@RequestMapping("/department/slectByTree")
 	public String slectByTree(){
 		return "/common/department";
 	}
 	
-	//数据字典
+	//数据字典列表
 	@RequestMapping("/dictionary/slectByPage")
 	public String slectByDictionaryPage(){
 		return "/common/dictionary";
 	}
-	//数据字典
+	//添加数据字典
 	@RequestMapping("/dictionary/addDictionaryPage")
 	public String addDictionaryPage(){
 		return "/common/dictionary_add";
 	}
+	//编辑数据字典
+	@RequestMapping("/dictionary/editDictionaryPage")
+	public String editDictionaryPage(){
+		return "/common/dictionary_add";
+	}
+	
 	
 }

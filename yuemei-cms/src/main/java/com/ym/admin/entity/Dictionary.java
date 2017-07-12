@@ -19,6 +19,7 @@ public class Dictionary extends PageVO implements Serializable{
 	private String name;//名称
 	private String code;//编码
 	private String date_desc;//描述
+	private int status;//1,启用2停用
 	@JSONField (format="yyyy-MM-dd HH:mm:ss")
 	private Date create_date;//创建时间
 	private Integer num;//排序
@@ -59,6 +60,12 @@ public class Dictionary extends PageVO implements Serializable{
 	}
 	public void setDate_desc(String date_desc) {
 		this.date_desc = date_desc;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 }

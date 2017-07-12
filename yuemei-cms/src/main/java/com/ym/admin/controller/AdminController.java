@@ -92,4 +92,28 @@ public class AdminController {
 		sysUserService.addDictionary(dictionary);
 		return "ok";
 	}
+	
+	/**
+	 * 修改数据字典
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/dictionary/edit",method = RequestMethod.GET)
+	public String editDictionary(Integer id){
+		Dictionary dictionary=sysUserService.getDictionaryById(id);
+		return JSON.toJSONString(dictionary);
+	}
+	
+	/**
+	 * 删除数据字典
+	 * 后期优化此接口
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/dictionary/delete",method = RequestMethod.GET)
+	public String deleteDictionary(Integer[] id){
+		sysUserService.deleteDictionaryById(id);
+		return "ok";
+	}
+	
 }

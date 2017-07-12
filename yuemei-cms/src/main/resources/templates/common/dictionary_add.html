@@ -23,11 +23,15 @@
                 <tr>
                     <td style="width:40px;">排序：</td>
                     <td style="width:150px;">    
-                        <input name="num" class="mini-textbox" vtype="int" required="true"/>
+                        <input name="num" class="mini-textbox" vtype="int" required="true" emptyText="必须输入整数"/>
                     </td>
-                    <td style="width:40px;">
-                    	<span style="color: red;">*整数</span>
-                    </td>
+                    <td style="width:40px;">状态：</td>
+	                <td>                        
+	                    <select name="status" class="mini-radiobuttonlist">
+	                        <option value="1">启用</option>
+	                        <option value="2">停用</option>
+	                    </select>
+	                </td>
                 </tr>
                <tr>
 	                <td >备注：</td>
@@ -71,14 +75,12 @@
                 //跨页面传递的数据对象，克隆后才可以安全使用
                 data = mini.clone(data);
                 $.ajax({
-                    url: "../data/AjaxService.jsp?method=GetEmployee&id=" + data.id,
+                    url: "/dictionary/edit?id=" + data.id,
                     cache: false,
                     success: function (text) {
                         var o = mini.decode(text);
                         form.setData(o);
                         form.setChanged(false);
-                        onDeptChanged();
-                        mini.getbyName("position").setValue(o.position);
                     }
                 });
             }
@@ -89,7 +91,7 @@
         }
         function CloseWindow(action) {            
             if (action == "close" && form.isChanged()) {
-                if (confirm("数据被修改了，是否先保存？")) {
+                if (mini.confirm("数据被修改了，是否先保存？")) {
                     return false;
                 }
             }
@@ -101,15 +103,6 @@
         }
         function onCancel(e) {
             CloseWindow("cancel");
-        }
-        //////////////////////////////////
-        function onDeptChanged(e) {
-            var deptCombo = mini.getbyName("dept_id");
-            var positionCombo = mini.getbyName("position");
-            var dept_id = deptCombo.getValue();
-
-            positionCombo.load("../data/AjaxService.jsp?method=GetPositionsByDepartmenId&id=" + dept_id);
-            positionCombo.setValue("");
         }
 </script>
 </body>
