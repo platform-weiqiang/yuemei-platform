@@ -1,7 +1,6 @@
-# yuemei-platform<br/>
-项目的联系和开发<br/>
+悦美网项目<br/>
 
-#各个项目的端口号<br/>
+各个项目的端口号<br/>
 yuemei-config-server 8888<br/>
 yuemei-eureka-client 8891<br/>
 yuemei-eureka-server 8890<br/>
