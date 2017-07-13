@@ -10,23 +10,23 @@ import java.io.Serializable;
 public class Department implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private Integer parent_id;//父级id
+	private String id;
+	private String parent_id;//父级id
 	private String code;//编码
 	private int level;//等级
 	private String dept_name;//部门名称
 	private Integer num;//排序
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	public Integer getParent_id() {
+	public String getParent_id() {
 		return parent_id;
 	}
-	public void setParent_id(Integer parent_id) {
+	public void setParent_id(String parent_id) {
 		this.parent_id = parent_id;
 	}
 	public String getCode() {

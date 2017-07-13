@@ -7,7 +7,7 @@ import com.ym.admin.entity.Dictionary;
 
 public interface CommonMapper {
 
-	List<Department> selectCompanyList(Integer id);
+	List<Department> selectCompanyList(String id);
 
 	List<Dictionary> selectEducationList();
 

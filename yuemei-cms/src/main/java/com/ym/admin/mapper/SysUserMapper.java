@@ -21,7 +21,7 @@ public interface SysUserMapper {
 
 	void updateSysUser(SysUser user);
 
-	Dictionary getDictionaryById(Integer id);
+	Dictionary getDictionaryById(String id);
 
 	void deleteDictionaryById(Integer[] id);
 

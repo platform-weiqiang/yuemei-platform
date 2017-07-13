@@ -7,7 +7,7 @@ import com.ym.admin.entity.Dictionary;
 
 public interface CommonService {
 
-	List<Department> selectCompanyList(Integer id);
+	List<Department> selectCompanyList(String id);
 
 	List<Dictionary> selectEducationList();
 

@@ -1,6 +1,8 @@
 package com.ym.admin.service.impl;
 
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ym.admin.entity.Department;
@@ -8,6 +10,7 @@ import com.ym.admin.entity.Dictionary;
 import com.ym.admin.entity.SysUser;
 import com.ym.admin.mapper.SysUserMapper;
 import com.ym.admin.service.SysUserService;
+import com.ym.common.utils.UUIDUtil;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
@@ -32,24 +35,26 @@ public class SysUserServiceImpl implements SysUserService {
 
 	@Override
 	public void addDictionary(Dictionary dictionary) {
-		if (dictionary.getId()==null) {
-			sysUserMapper.addDictionary(dictionary);
-		}else{
+		if (StringUtils.isNotBlank(dictionary.getId())) {
 			sysUserMapper.updateDictionary(dictionary);
+		}else{
+			dictionary.setId(UUIDUtil.uuid());
+			sysUserMapper.addDictionary(dictionary);
 		}
 	}
 
 	@Override
 	public void addSysUser(SysUser user) {
-		if (user.getId()==null) {
-			sysUserMapper.addSysUser(user);
-		}else {
+		if (StringUtils.isNotBlank(user.getId())) {
 			sysUserMapper.updateSysUser(user);
+		}else {
+			user.setId(UUIDUtil.uuid());
+			sysUserMapper.addSysUser(user);
 		}
 	}
 
 	@Override
-	public Dictionary getDictionaryById(Integer id) {
+	public Dictionary getDictionaryById(String id) {
 		return sysUserMapper.getDictionaryById(id);
 	}
 

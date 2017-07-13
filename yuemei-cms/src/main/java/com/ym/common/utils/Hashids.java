@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * @since 0.3.3
  */
 public class Hashids {
-  private static final String DEFAULT_ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  public static final String DEFAULT_ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
   private String salt = "";
   private String alphabet = "";
@@ -369,11 +369,13 @@ public class Hashids {
     return result;
   }
 
+  /**
+   * 测试方法
+   * @param args
+   */
   public static void main(String[] args) {
-	  Hashids hashids = new Hashids(UUID.randomUUID().toString(), 32,DEFAULT_ALPHABET);
-	  String hash = hashids.encode(1L);
-	  System.out.println(hash);
-	 
-	
+	Hashids hashids = new Hashids(UUID.randomUUID().toString(), 32,DEFAULT_ALPHABET);
+	String hash = hashids.encode(1L);
+	System.out.println(hash);
   }
 }

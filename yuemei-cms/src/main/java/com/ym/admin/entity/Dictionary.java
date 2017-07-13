@@ -15,7 +15,7 @@ public class Dictionary extends PageVO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	private String id;
 	private String name;//名称
 	private String code;//编码
 	private String date_desc;//描述
@@ -24,12 +24,6 @@ public class Dictionary extends PageVO implements Serializable{
 	private Date create_date;//创建时间
 	private Integer num;//排序
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
@@ -66,6 +60,12 @@ public class Dictionary extends PageVO implements Serializable{
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }

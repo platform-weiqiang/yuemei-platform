@@ -49,5 +49,10 @@ public class PageController {
 		return "/common/dictionary_add";
 	}
 	
+	//系统菜单
+	@RequestMapping("/sys_menu/slectByTree")
+	public String slectSysMenuByTree(){
+		return "/menu/sys_menu";
+	}
 	
 }

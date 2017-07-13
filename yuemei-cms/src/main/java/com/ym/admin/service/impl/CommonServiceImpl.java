@@ -16,7 +16,7 @@ public class CommonServiceImpl implements CommonService {
 	private CommonMapper commonMapper;
 
 	@Override
-	public List<Department> selectCompanyList(Integer id) {
+	public List<Department> selectCompanyList(String id) {
 		return commonMapper.selectCompanyList(id);
 	}
 

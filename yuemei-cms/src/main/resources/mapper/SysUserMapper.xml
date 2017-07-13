@@ -18,7 +18,7 @@
   	</select>
   	
   	<insert id="addDictionary">  
-        insert into data_dictionary (name,code,date_desc,status,create_date,num) values (#{name},#{code},#{date_desc},#{status},NOW(),#{num})  
+        insert into data_dictionary (id,name,code,date_desc,status,create_date,num) values (#{id},#{name},#{code},#{date_desc},#{status},NOW(),#{num})  
     </insert> 
     
     <update id="updateDictionary" parameterType="com.ym.admin.entity.Dictionary">
@@ -35,20 +35,20 @@
     
     <insert id="addSysUser">
     	insert into sys_user (
-	    	name,loginname,email,tel,password,sex,post_id,
+	    	id,name,loginname,email,tel,password,sex,post_id,
 	    	birthday,education_id,company_id,department_id,address,
 	    	head_img_url,remarks,status,create_time,update_time) 
 	   values 
-	    	(#{name},#{loginname},#{email},#{tel},#{password},#{sex},
+	    	(#{id},#{name},#{loginname},#{email},#{tel},#{password},#{sex},
     		#{post_id},#{birthday},#{education_id},#{company_id},#{department_id},
     		#{address},#{head_img_url},#{remarks},#{status},NOW(),update_time)  
     </insert>
     
-    <select id="getDictionaryById" parameterType="java.lang.Integer" resultType="com.ym.admin.entity.Dictionary">
+    <select id="getDictionaryById" parameterType="java.lang.String" resultType="com.ym.admin.entity.Dictionary">
     	SELECT * FROM data_dictionary WHERE id=#{id}
     </select>
     
-    <delete id="deleteDictionaryById" parameterType="java.lang.Integer">
+    <delete id="deleteDictionaryById" parameterType="java.lang.String">
     	 DELETE FROM data_dictionary WHERE id IN
     	 <foreach collection="array" item="id" index="index" open="(" separator="," close=")">
 			#{id}

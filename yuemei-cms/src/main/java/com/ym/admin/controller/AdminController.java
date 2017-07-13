@@ -99,7 +99,7 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value="/dictionary/edit",method = RequestMethod.GET)
-	public String editDictionary(Integer id){
+	public String editDictionary(String id){
 		Dictionary dictionary=sysUserService.getDictionaryById(id);
 		return JSON.toJSONString(dictionary);
 	}

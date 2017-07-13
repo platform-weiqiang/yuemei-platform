@@ -27,7 +27,7 @@ public class CommonController {
 	 * @return
 	 */
 	@RequestMapping(value="/selectCompany/list",method = RequestMethod.GET)
-	public String selectCompanyList(@RequestParam(value="id",defaultValue="1",required=false)Integer id){
+	public String selectCompanyList(@RequestParam(value="id",defaultValue="1",required=false)String id){
 		List<Department> list=commonService.selectCompanyList(id);
 		return JSON.toJSONString(list);
 	}
