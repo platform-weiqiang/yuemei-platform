@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.ym.cms</groupId>
-	<artifactId>YueMei-Eureka-Client</artifactId>
+	<artifactId>YueMei-Eureka-Server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>YueMei-Eureka-Client</name>
+	<name>YueMei-Eureka-Server</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
