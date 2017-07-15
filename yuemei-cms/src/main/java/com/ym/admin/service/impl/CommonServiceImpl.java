@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ym.admin.entity.Department;
 import com.ym.admin.entity.Dictionary;
+import com.ym.admin.entity.SysMenu;
 import com.ym.admin.mapper.CommonMapper;
 import com.ym.admin.service.CommonService;
 
@@ -23,5 +24,10 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public List<Dictionary> selectEducationList() {
 		return commonMapper.selectEducationList();
+	}
+
+	@Override
+	public List<SysMenu> selectMenuList() {
+		return commonMapper.selectMenuList();
 	}
 }
