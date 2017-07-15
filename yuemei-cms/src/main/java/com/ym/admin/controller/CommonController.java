@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSON;
 import com.ym.admin.entity.Department;
 import com.ym.admin.entity.Dictionary;
+import com.ym.admin.entity.SysMenu;
 import com.ym.admin.service.CommonService;
 
 /**
@@ -38,6 +39,15 @@ public class CommonController {
 	@RequestMapping(value="/selectEducation/list",method = RequestMethod.GET)
 	public String selectEducation(){
 		List<Dictionary> list=commonService.selectEducationList();
+		return JSON.toJSONString(list);
+	}
+	
+	/**
+	 * 系统的菜单管理
+	 */
+	@RequestMapping(value="/selectMenu/Ztree",method=RequestMethod.POST)
+	public String selectMenuZtree(){
+		List<SysMenu> list=commonService.selectMenuList();
 		return JSON.toJSONString(list);
 	}
 }

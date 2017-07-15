@@ -8,4 +8,8 @@
   	<select id="selectEducationList" resultType="com.ym.admin.entity.Dictionary">
 		SELECT * FROM data_dictionary WHERE code='Education' ORDER BY num ASC
   	</select>
+  	
+  	<select id="selectMenuList" resultType="com.ym.admin.entity.SysMenu">
+		SELECT * FROM sys_menu ORDER BY num ASC
+  	</select>
 </mapper>
