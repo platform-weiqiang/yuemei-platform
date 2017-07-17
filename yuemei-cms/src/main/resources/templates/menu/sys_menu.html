@@ -21,8 +21,7 @@
 			    <li>
 					<span iconCls="icon-add">新增节点</span>
 					<ul>
-					    <li onclick="onAddBefore">插入节点前</li>                
-			            <li onclick="onAddAfter">插入节点后</li>	
+					    <li onclick="onAddBefore">插入同级节点</li>                
 						<li onclick="onAddNode">插入子节点</li>	             
 					</ul>
 				</li>
@@ -71,12 +70,7 @@
             var tree = mini.get("tree1");
             var node = tree.getSelectedNode();
             var newNode = {};
-            tree.addNode(newNode, "before", node);
-        }
-        function onAddAfter(e) {
-            var tree = mini.get("tree1");
-            var node = tree.getSelectedNode();
-            var newNode = {};
+            var newNode=saveZtreeData(JSON.stringify(node),1);
             tree.addNode(newNode, "after", node);
         }
         function onAddNode(e) {
@@ -129,6 +123,21 @@ function onBeforeOpen(e) {
         removeItem.disable();
     }
  }
+ 
+function saveZtreeData(val,stus) {
+	var newNode = {};
+    $.ajax({
+        url: "/addZtree/node",
+        data: {data:val,type:stus},
+        type: "post",
+        success: function (text) {
+        	alert(text);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        }
+    });
+}
 </script>
 <!-- <script type="text/javascript">
         mini.parse();

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.ym.admin.entity.Department;
 import com.ym.admin.entity.Dictionary;
 import com.ym.admin.entity.SysMenu;
@@ -49,6 +50,19 @@ public class CommonController {
 	public String selectMenuZtree(){
 		List<SysMenu> list=commonService.selectMenuList();
 		return JSON.toJSONString(list);
+	}
+
+	/**
+	 * 添加属性菜单
+	 * @param data
+	 * @param type 1.插入同级节点 2.插入子节点
+	 * @return
+	 */
+	@RequestMapping(value="/addZtree/node",method=RequestMethod.POST)
+	public String addMenuZtree(String data,Integer type){
+		SysMenu sysMenu=JSONObject.parseObject(data,SysMenu.class);
+		SysMenu menu=commonService.addZtreeNode(sysMenu,type);
+		return JSON.toJSONString(menu);
 	}
 }
    
