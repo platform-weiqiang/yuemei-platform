@@ -59,10 +59,10 @@ public class CommonController {
 	 * @return
 	 */
 	@RequestMapping(value="/addZtree/node",method=RequestMethod.POST)
-	public String addMenuZtree(String data,Integer type){
+	public SysMenu addMenuZtree(String data,Integer type){
 		SysMenu sysMenu=JSONObject.parseObject(data,SysMenu.class);
 		SysMenu menu=commonService.addZtreeNode(sysMenu,type);
-		return JSON.toJSONString(menu);
+		return menu;
 	}
 }
    

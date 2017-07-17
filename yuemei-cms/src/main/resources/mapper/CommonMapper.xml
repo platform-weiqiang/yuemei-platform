@@ -12,4 +12,14 @@
   	<select id="selectMenuList" resultType="com.ym.admin.entity.SysMenu">
 		SELECT * FROM sys_menu ORDER BY num ASC
   	</select>
+  	
+  	<insert id="addSysMenu">  
+        insert into sys_menu (id,code,parent_id,name,icon,url,num,levels,ismenu,tips,status,isopen,create_date) 
+        values 
+        (#{id},#{code},#{parent_id},#{name},#{icon},#{url},#{num},#{levels},#{ismenu},#{tips},#{status},#{isopen},#{create_date})  
+    </insert>
+    
+    <select id="selectSysMenuById" parameterType="java.lang.String" resultType="com.ym.admin.entity.SysMenu">
+		SELECT * FROM sys_menu WHERE id=#{id}
+  	</select>
 </mapper>
