@@ -9,17 +9,31 @@
    <div class="mini-splitter" style="width:100%;height:100%;">
     <div size="240" showCollapseButton="true">
         <div class="mini-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">                
-            <a class="mini-button" iconCls="icon-add" plain="true" onclick="addRow()">新增</a>
+            <a class="mini-button" iconCls="icon-add" plain="true" onclick="onEditNode()">新增</a>
             <a class="mini-button" iconCls="icon-remove" plain="true" onclick="removeRow()">删除</a>     
             <a class="mini-button" iconCls="icon-save" plain="true" onclick="saveData()">保存</a>                   
         </div>
         <div class="mini-fit">
-            <ul id="tree1" class="mini-tree" url="/selectMenu/Ztree" style="width:100%;" contextMenu="#treeMenu" expandOnLoad="true"
-                showTreeIcon="true" textField="name" idField="id" parentField="parent_id" resultAsTree="false">        
-            </ul>
+            <ul id="tree1" class="mini-tree" url="/selectMenu/Ztree" style="width:100%;" 
+	        showTreeIcon="true" textField="name" idField="id" parentField="parent_id" resultAsTree="false" contextMenu="#treeMenu" expandOnLoad="true">
+    		</ul>
+    		<ul id="treeMenu" class="mini-contextmenu"  onbeforeopen="onBeforeOpen">        
+			    <li>
+					<span iconCls="icon-add">新增节点</span>
+					<ul>
+					    <li onclick="onAddBefore">插入节点前</li>                
+			            <li onclick="onAddAfter">插入节点后</li>	
+						<li onclick="onAddNode">插入子节点</li>	             
+					</ul>
+				</li>
+				<li class="separator"></li>
+				<li name="edit" iconCls="icon-edit" onclick="onEditNode">编辑节点</li>
+				<li class="separator"></li>
+				<li name="remove" iconCls="icon-remove" onclick="onRemoveNode">删除节点</li>        
+			</ul>
         </div>
     </div>
-    <div showCollapseButton="true">
+ <!--    <div showCollapseButton="true">
         <div class="mini-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">                
             <a class="mini-button" iconCls="icon-add" plain="true" onclick="addRow()">新增</a>
             <a class="mini-button" iconCls="icon-remove" plain="true" onclick="removeRow()">删除</a>     
@@ -50,9 +64,73 @@
                 </div>
             </div>  
         </div>
-    </div>        
+    </div>    -->     
 </div>
 <script type="text/javascript">
+        function onAddBefore(e) {
+            var tree = mini.get("tree1");
+            var node = tree.getSelectedNode();
+            var newNode = {};
+            tree.addNode(newNode, "before", node);
+        }
+        function onAddAfter(e) {
+            var tree = mini.get("tree1");
+            var node = tree.getSelectedNode();
+            var newNode = {};
+            tree.addNode(newNode, "after", node);
+        }
+        function onAddNode(e) {
+            var tree = mini.get("tree1");
+            var node = tree.getSelectedNode();
+            var newNode = {};
+            tree.addNode(newNode, "add", node);
+        }
+        function onEditNode(e) {
+            var tree = mini.get("tree1");
+            var node = tree.getSelectedNode();
+            tree.beginEdit(node);            
+        }
+        function onRemoveNode(e) {
+            var tree = mini.get("tree1");
+            var node = tree.getSelectedNode();
+            if (node) {
+                if (confirm("确定删除选中节点?")) {
+                    tree.removeNode(node);
+                }
+            }
+        }
+        function onMoveNode(e) {
+            var tree = mini.get("tree1");
+            var node = tree.getSelectedNode();
+            alert("moveNode");
+        }
+function onBeforeOpen(e) {
+    var menu = e.sender;
+    var tree = mini.get("tree1");
+    var node = tree.getSelectedNode();
+    if (!node) {
+        e.cancel = true;
+        return;
+    }
+    if (node && node.text == "Base") {
+        e.cancel = true;
+        //阻止浏览器默认右键菜单
+        e.htmlEvent.preventDefault();
+        return;
+    }
+    var editItem = mini.getbyName("edit", menu);
+    var removeItem = mini.getbyName("remove", menu);
+    editItem.show();
+    removeItem.enable();
+    if (node.id == "forms") {
+        editItem.hide();
+    }
+    if (node.id == "lists") {
+        removeItem.disable();
+    }
+ }
+</script>
+<!-- <script type="text/javascript">
         mini.parse();
         var tree = mini.get("tree1");
         var grid = mini.get("grid1");
@@ -112,6 +190,6 @@
                 }
             });
         }
-</script>
+</script> -->
 </body>
 </html>
