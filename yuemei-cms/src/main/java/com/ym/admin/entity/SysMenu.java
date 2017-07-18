@@ -13,8 +13,7 @@ public class SysMenu implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private String id;//id
-	private String code;//菜单编号
+	private String m_id;//id
 	private String parent_id;//父级菜单的id
 	private String name;//菜单名称
 	private String icon;//菜单图标
@@ -28,18 +27,6 @@ public class SysMenu implements Serializable{
 	@JSONField (format="yyyy-MM-dd HH:mm:ss")
 	private Date create_date;//创建时间
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
 	public String getParent_id() {
 		return parent_id;
 	}
@@ -105,5 +92,11 @@ public class SysMenu implements Serializable{
 	}
 	public void setCreate_date(Date create_date) {
 		this.create_date = create_date;
+	}
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 }
