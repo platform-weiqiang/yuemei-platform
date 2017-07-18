@@ -64,6 +64,18 @@
         function onAddBefore(e) {
             var tree = mini.get("tree1");
             var node = tree.getSelectedNode();
+            	mini.open({
+            	    url: bootPATH + "../dictionary/addDictionaryPage",
+            	    title: "新增数据", width: 420, height: 200,
+            	    onload: function () {
+            	        var iframe = this.getIFrameEl();
+            	        var data = { action: "new"};
+            	        iframe.contentWindow.SetData(data);
+            	    },
+            	    ondestroy: function (action) {
+            	        grid.reload();
+            	    }
+               });
             var newNode=saveZtreeData(JSON.stringify(node),1);
            tree.addNode(newNode, "before", node);
         }
