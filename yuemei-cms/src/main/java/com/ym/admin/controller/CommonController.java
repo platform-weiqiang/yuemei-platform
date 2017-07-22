@@ -64,5 +64,17 @@ public class CommonController {
 		SysMenu menu=commonService.addZtreeNode(sysMenu,type);
 		return menu;
 	}
+	
+	/**
+	 * 根据id查询树的节点数据
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/sysMenu/selectById",method=RequestMethod.GET)
+	public String selectSysMenuById(String id){
+		SysMenu menu=commonService.selectSysMenuById(id);
+		return JSON.toJSONString(menu);
+	}
+	
 }
    

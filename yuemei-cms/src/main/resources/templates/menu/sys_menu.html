@@ -16,7 +16,7 @@
 			    <li>
 					<span iconCls="icon-add">新增节点</span>
 					<ul>
-					    <li onclick="onAddBefore">插入同级节点</li>                
+					    <li onclick="addZtree">插入同级节点</li>                
 						<li onclick="onAddNode">插入子节点</li>	             
 					</ul>
 				</li>
@@ -61,24 +61,35 @@
     </div>    -->     
 </div>
 <script type="text/javascript">
-        function onAddBefore(e) {
+		mini.parse();
+        /* function onAddBefore(e) {
             var tree = mini.get("tree1");
             var node = tree.getSelectedNode();
-            	mini.open({
-            	    url: bootPATH + "../dictionary/addDictionaryPage",
-            	    title: "新增数据", width: 420, height: 200,
-            	    onload: function () {
-            	        var iframe = this.getIFrameEl();
-            	        var data = { action: "new"};
-            	        iframe.contentWindow.SetData(data);
-            	    },
-            	    ondestroy: function (action) {
-            	        grid.reload();
-            	    }
-               });
             var newNode=saveZtreeData(JSON.stringify(node),1);
-           tree.addNode(newNode, "before", node);
+          	tree.addNode(newNode, "before", node);
+        } */
+        function addZtree(e) {
+        	var tree = mini.get("tree1");
+            var row = tree.getSelectedNode();
+            if (row) {
+                mini.open({
+                    url: bootPATH + "../sysMenu/addTree",
+                    title: "新增菜单", width: 420, height: 200,
+                    onload: function () {
+                        var iframe = this.getIFrameEl();
+                        var data = { action: "new", id:row.m_id,type:1};
+                        iframe.contentWindow.SetData(data);
+                    },
+                    ondestroy: function (action) {
+                    	tree.reload();
+                    }
+                });
+            } else {
+            	mini.alert("请选中一条节点！");
+            }
         }
+        
+        
         function onAddNode(e) {
             var tree = mini.get("tree1");
             var node = tree.getSelectedNode();

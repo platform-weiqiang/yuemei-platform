@@ -8,6 +8,7 @@
 <body>
     <form id="form1" method="post">
         <input name="id" class="mini-hidden" />
+        <input id="dataTree1" class="mini-hidden"/>
         <div style="padding-left:11px;padding-bottom:5px;">
             <table style="table-layout:fixed;">
                 <tr>
@@ -15,28 +16,28 @@
                     <td style="width:150px;">    
                         <input name="name" class="mini-textbox" required="true"  emptyText="请输入名称"/>
                     </td>
-                    <td style="width:40px;">编码：</td>
+                    <td style="width:40px;">图片：</td>
                     <td style="width:150px;">    
-                      	<input name="code" class="mini-textbox" required="true"  emptyText="请输入编码"/>
+                      	<input name="icon" class="mini-textbox" required="true"  emptyText="请输入编码"/>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:40px;">排序：</td>
+                    <td style="width:40px;">链接：</td>
                     <td style="width:150px;">    
-                        <input name="num" class="mini-textbox" vtype="int" required="true" emptyText="必须输入整数"/>
+                        <input name="url" class="mini-textbox" required="true"  emptyText="请输入链接"/>
                     </td>
                     <td style="width:40px;">状态：</td>
 	                <td>                        
 	                    <select name="status" class="mini-radiobuttonlist">
 	                        <option value="1">启用</option>
-	                        <option value="2">停用</option>
+	                        <option value="0">不启用</option>
 	                    </select>
 	                </td>
                 </tr>
                <tr>
 	                <td >备注：</td>
 	                <td colspan="3">    
-	                    <input name="date_desc" class="mini-textarea" style="width:350px;" required="true" emptyText="请输入字段描述"/>
+	                    <input name="tips" class="mini-textarea" style="width:350px;" required="true" emptyText="请输入字段描述"/>
 	                </td>
            	   </tr>          
             </table>
@@ -70,16 +71,14 @@
         }
         //标准方法接口定义
         function SetData(data) {
-            if (data.action == "edit") {
+            if (data.action == "new") {
                 //跨页面传递的数据对象，克隆后才可以安全使用
                 data = mini.clone(data);
                 $.ajax({
-                    url: "/dictionary/edit?id=" + data.id,
+                    url: "/sysMenu/selectById?id=" + data.id,
                     cache: false,
                     success: function (text) {
-                        var o = mini.decode(text);
-                        form.setData(o);
-                        form.setChanged(false);
+                     $("#dataTree1").val(text);
                     }
                 });
             }

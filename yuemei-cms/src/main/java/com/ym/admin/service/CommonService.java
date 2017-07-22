@@ -16,4 +16,6 @@ public interface CommonService {
 
 	SysMenu addZtreeNode(SysMenu sysMenu, Integer type);
 
+	SysMenu selectSysMenuById(String id);
+
 }

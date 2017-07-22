@@ -55,4 +55,9 @@ public class PageController {
 		return "/menu/sys_menu";
 	}
 	
+	//添加系统的菜单
+	@RequestMapping("/sysMenu/addTree")
+	public String addSysMenuByTree(){
+		return "/menu/sys_menu_add";
+	}	
 }
