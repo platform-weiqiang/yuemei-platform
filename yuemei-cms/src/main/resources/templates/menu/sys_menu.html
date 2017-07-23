@@ -62,12 +62,6 @@
 </div>
 <script type="text/javascript">
 		mini.parse();
-        /* function onAddBefore(e) {
-            var tree = mini.get("tree1");
-            var node = tree.getSelectedNode();
-            var newNode=saveZtreeData(JSON.stringify(node),1);
-          	tree.addNode(newNode, "before", node);
-        } */
         function addZtree(e) {
         	var tree = mini.get("tree1");
             var row = tree.getSelectedNode();
@@ -77,7 +71,7 @@
                     title: "新增菜单", width: 420, height: 200,
                     onload: function () {
                         var iframe = this.getIFrameEl();
-                        var data = { action: "new", id:row.m_id,type:1};
+                        var data = { action: "new", m_id:row.m_id,nodeDataType:1,status:1};
                         iframe.contentWindow.SetData(data);
                     },
                     ondestroy: function (action) {
@@ -88,8 +82,6 @@
             	mini.alert("请选中一条节点！");
             }
         }
-        
-        
         function onAddNode(e) {
             var tree = mini.get("tree1");
             var node = tree.getSelectedNode();
@@ -111,114 +103,31 @@
                 }
             }
         }
-        function onMoveNode(e) {
-            var tree = mini.get("tree1");
-            var node = tree.getSelectedNode();
-            alert("moveNode");
-        }
-function onBeforeOpen(e) {
-    var menu = e.sender;
-    var tree = mini.get("tree1");
-    var node = tree.getSelectedNode();
-    if (!node) {
-        e.cancel = true;
-        return;
-    }
-    if (node && node.text == "Base") {
-        e.cancel = true;
-        //阻止浏览器默认右键菜单
-        e.htmlEvent.preventDefault();
-        return;
-    }
-    var editItem = mini.getbyName("edit", menu);
-    var removeItem = mini.getbyName("remove", menu);
-    editItem.show();
-    removeItem.enable();
-    if (node.id == "forms") {
-        editItem.hide();
-    }
-    if (node.id == "lists") {
-        removeItem.disable();
-    }
- }
- 
-function saveZtreeData(val,stus) {
-	var node;
-    $.ajax({
-        url: "/addZtree/node",
-        data: {data:val,type:stus},
-        type: "post",
-        async :false, 
-        success: function (text) {
-        	node = text;
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert(jqXHR.responseText);
-        }
-    });
-    return node;
-}
+		function onBeforeOpen(e) {
+		    var menu = e.sender;
+		    var tree = mini.get("tree1");
+		    var node = tree.getSelectedNode();
+		    if (!node) {
+		        e.cancel = true;
+		        return;
+		    }
+		    if (node && node.text == "Base") {
+		        e.cancel = true;
+		        //阻止浏览器默认右键菜单
+		        e.htmlEvent.preventDefault();
+		        return;
+		    }
+		    var editItem = mini.getbyName("edit", menu);
+		    var removeItem = mini.getbyName("remove", menu);
+		    editItem.show();
+		    removeItem.enable();
+		    if (node.id == "forms") {
+		        editItem.hide();
+		    }
+		    if (node.id == "lists") {
+		        removeItem.disable();
+		    }
+		 }
 </script>
-<!-- <script type="text/javascript">
-        mini.parse();
-        var tree = mini.get("tree1");
-        var grid = mini.get("grid1");
-        tree.on("nodeselect", function (e) {
-            if (e.isLeaf) {
-                grid.load({ dept_id: e.node.id });
-            } else {
-                grid.setData([]);
-                grid.setTotalCount(0);
-            }
-        });
-        //////////////////////////////////////////////
-        var Genders = [{ id: 1, text: '男' }, { id: 2, text: '女'}];
-        function onGenderRenderer(e) {
-            for (var i = 0, l = Genders.length; i < l; i++) {
-                var g = Genders[i];
-                if (g.id == e.value) return g.text;
-            }
-            return "";
-        }
-        function onNameFilterChanged(e) {
-            var textbox = e.sender;
-            var key = textbox.getValue();
-            
-            var node = tree.getSelectedNode();
-            if (node) {
-                grid.load({ dept_id: node.id, key: key });
-            }
-        }
-        function addRow() {            
-            var node = tree.getSelectedNode();
-            if (node) {
-                var newRow = { name: "New Row" };
-                newRow.dept_id = node.id;
-                grid.addRow(newRow, 0);
-            }
-        }
-        function removeRow() {
-            var rows = grid.getSelecteds();
-            if (rows.length > 0) {
-                grid.removeRows(rows, true);
-            }
-        }
-        function saveData() {
-            var data = grid.getChanges();
-            var json = mini.encode(data);
-            grid.loading("保存中，请稍后......");
-            $.ajax({
-                url: "../data/AjaxService.aspx?method=SaveEmployees",
-                data: { data: json },
-                type: "post",
-                success: function (text) {
-                    grid.reload();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert(jqXHR.responseText);
-                }
-            });
-        }
-</script> -->
 </body>
 </html>

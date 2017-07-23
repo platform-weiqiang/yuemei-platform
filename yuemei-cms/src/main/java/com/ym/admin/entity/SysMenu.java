@@ -27,6 +27,9 @@ public class SysMenu implements Serializable{
 	@JSONField (format="yyyy-MM-dd HH:mm:ss")
 	private Date create_date;//创建时间
 	
+	//新增属性
+	private int nodeDataType;//1.添加同级节点 2.添加子节点 3.编辑节点
+	
 	public String getParent_id() {
 		return parent_id;
 	}
@@ -98,5 +101,11 @@ public class SysMenu implements Serializable{
 	}
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
+	}
+	public int getNodeDataType() {
+		return nodeDataType;
+	}
+	public void setNodeDataType(int nodeDataType) {
+		this.nodeDataType = nodeDataType;
 	}
 }

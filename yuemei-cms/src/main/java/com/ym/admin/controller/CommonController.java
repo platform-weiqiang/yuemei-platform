@@ -53,16 +53,14 @@ public class CommonController {
 	}
 
 	/**
-	 * 添加属性菜单
+	 * 添加树的节点
 	 * @param data
-	 * @param type 1.插入同级节点 2.插入子节点
 	 * @return
 	 */
-	@RequestMapping(value="/addZtree/node",method=RequestMethod.POST)
-	public SysMenu addMenuZtree(String data,Integer type){
+	@RequestMapping(value="/sysMenu/addTreeNode",method=RequestMethod.POST)
+	public void addMenuZtree(String data){
 		SysMenu sysMenu=JSONObject.parseObject(data,SysMenu.class);
-		SysMenu menu=commonService.addZtreeNode(sysMenu,type);
-		return menu;
+		commonService.addZtreeNode(sysMenu);
 	}
 	
 	/**

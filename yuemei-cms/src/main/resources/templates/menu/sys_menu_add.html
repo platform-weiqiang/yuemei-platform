@@ -7,8 +7,8 @@
 </head>
 <body>
     <form id="form1" method="post">
-        <input name="id" class="mini-hidden" />
-        <input id="dataTree1" class="mini-hidden"/>
+        <input name="m_id" class="mini-hidden" />
+        <input name="nodeDataType" class="mini-hidden"/>
         <div style="padding-left:11px;padding-bottom:5px;">
             <table style="table-layout:fixed;">
                 <tr>
@@ -29,7 +29,7 @@
                     <td style="width:40px;">状态：</td>
 	                <td>                        
 	                    <select name="status" class="mini-radiobuttonlist">
-	                        <option value="1">启用</option>
+	                        <option value="1" selected="selected">启用</option>
 	                        <option value="0">不启用</option>
 	                    </select>
 	                </td>
@@ -55,8 +55,9 @@
             form.validate();
             if (form.isValid() == false) return;
             var json = mini.encode(o);
+            alert(json);
             $.ajax({
-                url: "/dictionary/add",
+                url: "/sysMenu/addTreeNode",
 				type: 'post',
                 data: {data:json},
                 cache: false,
@@ -74,13 +75,9 @@
             if (data.action == "new") {
                 //跨页面传递的数据对象，克隆后才可以安全使用
                 data = mini.clone(data);
-                $.ajax({
-                    url: "/sysMenu/selectById?id=" + data.id,
-                    cache: false,
-                    success: function (text) {
-                     $("#dataTree1").val(text);
-                    }
-                });
+                var o = mini.decode(data);
+                form.setData(o);
+                form.setChanged(false);
             }
         }
         function GetData() {

@@ -35,26 +35,21 @@ public class CommonServiceImpl implements CommonService {
 	 * 添加属性菜单
 	 */
 	@Override
-	public SysMenu addZtreeNode(SysMenu sysMenu,Integer type) {
-		String id=UUIDUtil.uuid();
-		SysMenu menu=new SysMenu();
-		menu.setM_id(id);
-		menu.setName("新菜单");
-		menu.setNum(sysMenu.getNum()+1);
-		menu.setIsmenu(1);
-		menu.setTips("新菜单");
-		menu.setIsopen(1);
-		menu.setStatus(1);
-		menu.setCreate_date(new Date());
-		if (type==1) {
-			menu.setParent_id(sysMenu.getParent_id());
-			menu.setLevels(sysMenu.getLevels());
+	public void addZtreeNode(SysMenu sysMenu) {
+		SysMenu sysMenuNode=commonMapper.selectSysMenuById(sysMenu.getM_id());
+		sysMenu.setM_id(UUIDUtil.uuid());
+		sysMenu.setNum(sysMenuNode.getNum()+1);
+		sysMenu.setIsmenu(1);
+		sysMenu.setIsopen(1);
+		sysMenu.setCreate_date(new Date());
+		if (sysMenu.getNodeDataType()==1) {
+			sysMenu.setParent_id(sysMenuNode.getParent_id());
+			sysMenu.setLevels(sysMenuNode.getLevels());
 		}else{
-			menu.setParent_id(sysMenu.getM_id());
-			menu.setLevels(sysMenu.getLevels()+1);
+			sysMenu.setParent_id(sysMenuNode.getM_id());
+			sysMenu.setLevels(sysMenuNode.getLevels()+1);
 		}
-		commonMapper.addSysMenu(menu);
-		return commonMapper.selectSysMenuById(id);
+		commonMapper.addSysMenu(sysMenu);
 	}
 
 	@Override
