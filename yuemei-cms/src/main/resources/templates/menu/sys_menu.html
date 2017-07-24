@@ -83,10 +83,25 @@
             }
         }
         function onAddNode(e) {
-            var tree = mini.get("tree1");
-            var node = tree.getSelectedNode();
-            var newNode=saveZtreeData(JSON.stringify(node),2);
-            tree.addNode(newNode, "add", node);
+        	var tree = mini.get("tree1");
+            var row = tree.getSelectedNode();
+            alert(row);
+            if (row) {
+                mini.open({
+                    url: bootPATH + "../sysMenu/addTree",
+                    title: "新增菜单", width: 420, height: 200,
+                    onload: function () {
+                        var iframe = this.getIFrameEl();
+                        var data = { action: "new", m_id:row.m_id,nodeDataType:2,status:1};
+                        iframe.contentWindow.SetData(data);
+                    },
+                    ondestroy: function (action) {
+                    	tree.reload();
+                    }
+                });
+            } else {
+            	mini.alert("请选中一条节点！");
+            }
         }
         function onEditNode(e) {
             var tree = mini.get("tree1");
@@ -94,6 +109,8 @@
             alert(node);
             tree.beginEdit(node);            
         }
+        
+        
         function onRemoveNode(e) {
             var tree = mini.get("tree1");
             var node = tree.getSelectedNode();
@@ -107,6 +124,7 @@
 		    var menu = e.sender;
 		    var tree = mini.get("tree1");
 		    var node = tree.getSelectedNode();
+		    var nodeOnclick=node.parent_id;
 		    if (!node) {
 		        e.cancel = true;
 		        return;
