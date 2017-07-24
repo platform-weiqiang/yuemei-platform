@@ -36,20 +36,29 @@ public class CommonServiceImpl implements CommonService {
 	 */
 	@Override
 	public void addZtreeNode(SysMenu sysMenu) {
-		SysMenu sysMenuNode=commonMapper.selectSysMenuById(sysMenu.getM_id());
-		sysMenu.setM_id(UUIDUtil.uuid());
-		sysMenu.setNum(sysMenuNode.getNum()+1);
-		sysMenu.setIsmenu(1);
-		sysMenu.setIsopen(1);
-		sysMenu.setCreate_date(new Date());
 		if (sysMenu.getNodeDataType()==1) {
+			SysMenu sysMenuNode=commonMapper.selectSysMenuById(sysMenu.getM_id());
+			sysMenu.setM_id(UUIDUtil.uuid());
+			sysMenu.setNum(sysMenuNode.getNum()+1);
+			sysMenu.setIsmenu(1);
+			sysMenu.setIsopen(1);
+			sysMenu.setCreate_date(new Date());
 			sysMenu.setParent_id(sysMenuNode.getParent_id());
 			sysMenu.setLevels(sysMenuNode.getLevels());
-		}else{
+			commonMapper.addSysMenu(sysMenu);
+		}else if (sysMenu.getNodeDataType()==2){
+			SysMenu sysMenuNode=commonMapper.selectSysMenuById(sysMenu.getM_id());
+			sysMenu.setM_id(UUIDUtil.uuid());
+			sysMenu.setNum(sysMenuNode.getNum()+1);
+			sysMenu.setIsmenu(1);
+			sysMenu.setIsopen(1);
+			sysMenu.setCreate_date(new Date());
 			sysMenu.setParent_id(sysMenuNode.getM_id());
 			sysMenu.setLevels(sysMenuNode.getLevels()+1);
+			commonMapper.addSysMenu(sysMenu);
+		}else {
+			commonMapper.updateSysMenu(sysMenu);
 		}
-		commonMapper.addSysMenu(sysMenu);
 	}
 
 	@Override

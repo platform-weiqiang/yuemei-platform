@@ -85,7 +85,6 @@
         function onAddNode(e) {
         	var tree = mini.get("tree1");
             var row = tree.getSelectedNode();
-            alert(row);
             if (row) {
                 mini.open({
                     url: bootPATH + "../sysMenu/addTree",
@@ -105,9 +104,23 @@
         }
         function onEditNode(e) {
             var tree = mini.get("tree1");
-            var node = tree.getSelectedNode();
-            alert(node);
-            tree.beginEdit(node);            
+            var row = tree.getSelectedNode();
+            if (row) {
+                mini.open({
+                    url: bootPATH + "../sysMenu/addTree",
+                    title: "编辑菜单", width: 420, height: 200,
+                    onload: function () {
+                        var iframe = this.getIFrameEl();
+                        var data = { action: "edit", m_id:row.m_id};
+                        iframe.contentWindow.SetData(data);
+                    },
+                    ondestroy: function (action) {
+                        tree.reload();
+                    }
+                });
+            } else {
+                mini.alert("请选中一条节点！");
+            }
         }
         
         

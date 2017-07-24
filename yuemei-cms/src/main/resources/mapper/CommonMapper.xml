@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.ym.admin.mapper.CommonMapper">
+
 	<select id="selectCompanyList" parameterType="java.lang.String" resultType="com.ym.admin.entity.Department">
 		SELECT * FROM department WHERE parent_id=#{id}
   	</select>
@@ -22,4 +24,22 @@
     <select id="selectSysMenuById" parameterType="java.lang.String" resultType="com.ym.admin.entity.SysMenu">
 		SELECT * FROM sys_menu WHERE m_id=#{id}
   	</select>
+
+	<update id="updateSysMenu" parameterType="com.ym.admin.entity.SysMenu">
+		UPDATE sys_menu
+		<trim prefix="set" suffixOverrides=",">
+			<if test="parent_id!=null">parent_id=#{parent_id},</if>
+			<if test="name!=null">name=#{name},</if>
+			<if test="icon!=null">icon=#{icon},</if>
+			<if test="url!=null">url=#{url},</if>
+			<if test="num!=null">num=#{num},</if>
+			<if test="levels!=null">levels=#{levels},</if>
+			<if test="ismenu!=null">ismenu=#{ismenu},</if>
+			<if test="tips!=null">tips=#{tips},</if>
+			<if test="status!=null">status=#{status},</if>
+			<if test="isopen!=null">isopen=#{isopen},</if>
+			<if test="create_date!=null">create_date=#{create_date},</if>
+		</trim>
+		WHERE m_id=#{m_id}
+	</update>
 </mapper>

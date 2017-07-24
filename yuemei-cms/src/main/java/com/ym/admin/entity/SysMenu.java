@@ -28,7 +28,7 @@ public class SysMenu implements Serializable{
 	private Date create_date;//创建时间
 	
 	//新增属性
-	private int nodeDataType;//1.添加同级节点 2.添加子节点 3.编辑节点
+	private int nodeDataType;//0.编辑节点 1.添加同级节点 2.添加子节点
 	
 	public String getParent_id() {
 		return parent_id;

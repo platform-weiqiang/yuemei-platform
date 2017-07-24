@@ -55,6 +55,7 @@
             form.validate();
             if (form.isValid() == false) return;
             var json = mini.encode(o);
+            alert(json);
             $.ajax({
                 url: "/sysMenu/addTreeNode",
 				type: 'post',
@@ -71,12 +72,20 @@
         }
         //标准方法接口定义
         function SetData(data) {
-            if (data.action == "new") {
-                //跨页面传递的数据对象，克隆后才可以安全使用
-                data = mini.clone(data);
-                var o = mini.decode(data);
-                form.setData(o);
-                form.setChanged(false);
+            data = mini.clone(data);
+            var o = mini.decode(data);
+            form.setData(o);
+            form.setChanged(false);
+            if (data.action == "edit") {
+                $.ajax({
+                    url: "/sysMenu/selectById?id=" + data.m_id,
+                    cache: false,
+                    success: function (text) {
+                        var o = mini.decode(text);
+                        form.setData(o);
+                        form.setChanged(false);
+                    }
+                });
             }
         }
         function GetData() {
