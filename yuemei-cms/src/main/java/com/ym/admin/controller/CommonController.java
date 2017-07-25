@@ -73,6 +73,17 @@ public class CommonController {
 		SysMenu menu=commonService.selectSysMenuById(id);
 		return JSON.toJSONString(menu);
 	}
+
+	/**
+	 * 根据所选的树的节点id删除相关的节点
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/sysMenu/deleteTreeById",method = RequestMethod.GET)
+	public String sysMenu(String id){
+		commonService.deleteTreeById(id);
+		return "ok";
+	}
 	
 }
    

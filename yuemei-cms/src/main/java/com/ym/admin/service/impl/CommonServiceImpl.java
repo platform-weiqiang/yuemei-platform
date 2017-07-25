@@ -65,4 +65,9 @@ public class CommonServiceImpl implements CommonService {
 	public SysMenu selectSysMenuById(String id) {
 		return commonMapper.selectSysMenuById(id);
 	}
+
+	@Override
+	public void deleteTreeById(String id) {
+
+	}
 }

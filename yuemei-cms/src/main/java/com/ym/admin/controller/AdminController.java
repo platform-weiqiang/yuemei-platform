@@ -64,7 +64,6 @@ public class AdminController {
 	
 	/**
 	 * 数据字段
-	 * @param sysUser
 	 * @param pageResult
 	 * @return
 	 */
@@ -82,8 +81,6 @@ public class AdminController {
 	
 	/**
 	 * 添加数据字典
-	 * @param dictionary
-	 * @param pageResult
 	 * @return
 	 */
 	@RequestMapping(value="/dictionary/add",method = RequestMethod.POST)

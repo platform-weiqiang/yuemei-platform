@@ -18,4 +18,5 @@ public interface CommonService {
 
 	SysMenu selectSysMenuById(String id);
 
+    void deleteTreeById(String id);
 }

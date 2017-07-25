@@ -129,7 +129,16 @@
             var node = tree.getSelectedNode();
             if (node) {
                 if (confirm("确定删除选中节点?")) {
-                    tree.removeNode(node);
+                    $.ajax({
+                        url: "/sysMenu/deleteTreeById?id=" +node.m_id,
+                        success: function (text) {
+                            tree.reload();
+                        },
+                        error: function () {
+                            tree.reload();
+                            mini.alert("网络出现异常，请稍后重试...");
+                        }
+                    });
                 }
             }
         }

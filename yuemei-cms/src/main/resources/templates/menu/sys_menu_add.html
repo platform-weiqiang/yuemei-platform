@@ -55,7 +55,6 @@
             form.validate();
             if (form.isValid() == false) return;
             var json = mini.encode(o);
-            alert(json);
             $.ajax({
                 url: "/sysMenu/addTreeNode",
 				type: 'post',
