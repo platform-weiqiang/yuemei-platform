@@ -65,6 +65,10 @@
         function addZtree(e) {
         	var tree = mini.get("tree1");
             var row = tree.getSelectedNode();
+            if (row.m_id=="0" || row.m_id==0){
+                mini.alert("此节点不能添加同级节点！");
+                return false;
+			}
             if (row) {
                 mini.open({
                     url: bootPATH + "../sysMenu/addTree",
@@ -105,6 +109,10 @@
         function onEditNode(e) {
             var tree = mini.get("tree1");
             var row = tree.getSelectedNode();
+            if (row.m_id=="0" || row.m_id==0){
+                mini.alert("此节点不能被编辑！");
+                return false;
+            }
             if (row) {
                 mini.open({
                     url: bootPATH + "../sysMenu/addTree",
@@ -122,8 +130,6 @@
                 mini.alert("请选中一条节点！");
             }
         }
-        
-        
         function onRemoveNode(e) {
             var tree = mini.get("tree1");
             var node = tree.getSelectedNode();
