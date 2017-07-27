@@ -1,9 +1,8 @@
 package com.ym.admin.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,7 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public List<SysMenu> selectMenuList() {
-		return commonMapper.selectMenuList(null);
+		return commonMapper.selectMenuList();
 	}
 
 	/**
@@ -71,15 +70,25 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public void deleteTreeById(String id) {
-		Map<Integer, List<String>> menu = new HashMap<>();
-	    SysMenu sysMenu=commonMapper.selectSysMenuById(id);
-	    if (null!=sysMenu){
-			List<SysMenu> list=commonMapper.selectMenuList(sysMenu.getParent_id());
+		List<SysMenu> sysMenuList=commonMapper.selectMenuList();
+		SysMenu sysMenu=selectSysMenuById(id);
+		List<String> childList=treeMenuList(sysMenuList,sysMenu.getParent_id());
+		for(String m:childList){
+			System.out.println(m);
 		}
 	}
 
-	public String selectSysMenuConter(String parentId){
-		String str="";
-		return "";
+
+	public static List<String> treeMenuList(List<SysMenu> menuList, String pid){
+		List<String> list=new ArrayList<>();
+		for(SysMenu mu: menuList){
+			//遍历出父id等于参数的id，add进子节点集合
+			if(mu.getM_id().equals(pid)){
+				//递归遍历下一级
+				treeMenuList(menuList,mu.getM_id());
+				list.add(mu.getM_id());
+			}
+		}
+		return list;
 	}
 }
