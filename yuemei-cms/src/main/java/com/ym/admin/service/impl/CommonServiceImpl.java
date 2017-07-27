@@ -1,7 +1,10 @@
 package com.ym.admin.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ym.admin.entity.Department;
@@ -28,7 +31,7 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public List<SysMenu> selectMenuList() {
-		return commonMapper.selectMenuList();
+		return commonMapper.selectMenuList(null);
 	}
 
 	/**
@@ -68,6 +71,15 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public void deleteTreeById(String id) {
+		Map<Integer, List<String>> menu = new HashMap<>();
+	    SysMenu sysMenu=commonMapper.selectSysMenuById(id);
+	    if (null!=sysMenu){
+			List<SysMenu> list=commonMapper.selectMenuList(sysMenu.getParent_id());
+		}
+	}
 
+	public String selectSysMenuConter(String parentId){
+		String str="";
+		return "";
 	}
 }

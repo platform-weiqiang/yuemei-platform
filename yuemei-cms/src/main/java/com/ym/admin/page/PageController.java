@@ -9,12 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageController {
 	
-	//首页
+	//登陆页面
 	@RequestMapping("/")
+	public String login(){
+		return "login";
+	}
+
+	//首页
+	@RequestMapping("/index")
 	public String index(){
 		return "index";
 	}
-	
+
 	//查询用户列表
 	@RequestMapping("/user/slectByPage")
 	public String selectUserPage(){

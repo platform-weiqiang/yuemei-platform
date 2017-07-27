@@ -12,7 +12,7 @@ public interface CommonMapper {
 
 	List<Dictionary> selectEducationList();
 
-	List<SysMenu> selectMenuList();
+	List<SysMenu> selectMenuList(String id);
 
 	void addSysMenu(SysMenu menu);
 

@@ -11,8 +11,12 @@
 		SELECT * FROM data_dictionary WHERE code='Education' ORDER BY num ASC
   	</select>
   	
-  	<select id="selectMenuList" resultType="com.ym.admin.entity.SysMenu">
-		SELECT * FROM sys_menu ORDER BY num ASC
+  	<select id="selectMenuList" parameterType="java.lang.String" resultType="com.ym.admin.entity.SysMenu">
+		SELECT * FROM sys_menu
+		<if test="id!=null">
+			WHERE parent_id=#{id}
+		</if>
+		ORDER BY num ASC
   	</select>
   	
   	<insert id="addSysMenu">  

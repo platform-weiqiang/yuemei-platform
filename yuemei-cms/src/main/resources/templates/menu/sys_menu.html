@@ -132,11 +132,11 @@
         }
         function onRemoveNode(e) {
             var tree = mini.get("tree1");
-            var node = tree.getSelectedNode();
-            if (node) {
+            var row = tree.getSelectedNode();
+            if (row) {
                 if (confirm("确定删除选中节点?")) {
                     $.ajax({
-                        url: "/sysMenu/deleteTreeById?id=" +node.m_id,
+                        url: "/sysMenu/deleteTreeById?id=" +row.m_id,
                         success: function (text) {
                             tree.reload();
                         },
