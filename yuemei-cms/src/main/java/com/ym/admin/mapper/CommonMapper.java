@@ -19,4 +19,8 @@ public interface CommonMapper {
 	SysMenu selectSysMenuById(String id);
 
 	void updateSysMenu(SysMenu sysMenu);
+
+    List<String> selectMenuListString(String id);
+
+	void updateSysMenuStatus(String[] str);
 }

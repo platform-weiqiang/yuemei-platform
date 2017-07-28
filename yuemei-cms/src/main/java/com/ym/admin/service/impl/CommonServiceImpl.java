@@ -70,25 +70,24 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public void deleteTreeById(String id) {
-		List<SysMenu> sysMenuList=commonMapper.selectMenuList();
-		SysMenu sysMenu=selectSysMenuById(id);
-		List<String> childList=treeMenuList(sysMenuList,sysMenu.getParent_id());
-		for(String m:childList){
-			System.out.println(m);
+		String str="";
+		str=getSysMenuBysupSelas(id,str);
+		try {
+			commonMapper.updateSysMenuStatus(str.split(","));
+		} catch (Exception e){
+			e.printStackTrace();
 		}
 	}
 
-
-	public static List<String> treeMenuList(List<SysMenu> menuList, String pid){
-		List<String> list=new ArrayList<>();
-		for(SysMenu mu: menuList){
-			//遍历出父id等于参数的id，add进子节点集合
-			if(mu.getM_id().equals(pid)){
-				//递归遍历下一级
-				treeMenuList(menuList,mu.getM_id());
-				list.add(mu.getM_id());
+	private String getSysMenuBysupSelas(String id, String str) {
+		str+=id+",";
+		List<String> list=commonMapper.selectMenuListString(id);
+		if (null!=list && list.size()>0){
+			for (int i=0;i<list.size();i++){
+				str=getSysMenuBysupSelas(list.get(i),str);
 			}
 		}
-		return list;
+		return str;
 	}
+
 }
