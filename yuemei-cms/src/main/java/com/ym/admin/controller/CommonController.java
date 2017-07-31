@@ -1,6 +1,9 @@
 package com.ym.admin.controller;
 
 import java.util.List;
+
+import com.ym.admin.entity.SysUser;
+import com.ym.common.page.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -83,6 +86,18 @@ public class CommonController {
 	public String sysMenu(String id){
 		commonService.deleteTreeById(id);
 		return "ok";
+	}
+
+	/**
+	 * 根据树的节点查询对应的按钮
+	 * @param sysMenu
+	 * @param pageResult
+	 * @return
+	 */
+	@RequestMapping(value = "/selectMenu/list",method = RequestMethod.POST)
+	public String selectMenu(SysMenu sysMenu, PageResult pageResult){
+		System.out.println(sysMenu.getM_id());
+		return "";
 	}
 	
 }

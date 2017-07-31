@@ -12,7 +12,7 @@ public class PageController {
 	//登陆页面
 	@RequestMapping("/")
 	public String login(){
-		return "/templates/login";
+		return "/login";
 	}
 
 	//首页

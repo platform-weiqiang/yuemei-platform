@@ -12,7 +12,7 @@
   	</select>
   	
   	<select id="selectMenuList" resultType="com.ym.admin.entity.SysMenu">
-		SELECT * FROM sys_menu WHERE ismenu!=0 ORDER BY num ASC
+		SELECT * FROM sys_menu WHERE ismenu=1 ORDER BY num ASC
   	</select>
 	<select id="selectMenuListString" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT m_id FROM sys_menu WHERE parent_id=#{id}

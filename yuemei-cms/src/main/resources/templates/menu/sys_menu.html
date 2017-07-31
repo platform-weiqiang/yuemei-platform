@@ -34,27 +34,13 @@
             <a class="mini-button" iconCls="icon-save" plain="true" onclick="saveData()">保存</a>                  
         </div>
         <div class="mini-fit" >
-            <div id="grid1" class="mini-datagrid" style="width:100%;height:100%;"borderStyle="border:0;"
-                url="../data/AjaxService.aspx?method=GetDepartmentEmployees"
-                showFilterRow="true" allowCellSelect="true" allowCellEdit="true">
-                <div property="columns">            
-                    <div field="loginname" width="120" headerAlign="center" allowSort="true">员工帐号
-                        <input property="editor" class="mini-textbox" style="width:100%;"/>
-                    </div>      
-                    <div field="name" width="120" headerAlign="center" allowSort="true">员工姓名                        
-                        <input property="editor" class="mini-textbox" style="width:100%;"/>
-                        <input id="nameFilter" property="filter" class="mini-textbox" onvaluechanged="onNameFilterChanged" style="width:100%;" />
-                    </div>                
-                    <div field="gender" width="100" allowSort="true" renderer="onGenderRenderer" align="center" headerAlign="center">性别
-                        <input property="editor" class="mini-combobox" style="width:100%;" data="Genders"/>
-                    </div>            
-                    <div field="age" width="100" allowSort="true">年龄
-                        <input property="editor" class="mini-spinner" minValue="0" maxValue="200" value="25" style="width:100%;"/>
-                    </div>
-                    <div field="birthday" width="100" allowSort="true" dateFormat="yyyy-MM-dd">出生日期
-                        <input property="editor" class="mini-datepicker" style="width:100%;"/>
-                    </div>                                    
-                    <div field="createtime" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true">创建日期</div>                
+            <div id="grid1" class="mini-datagrid" style="width:100%;height:100%;"borderStyle="border:0;" url="/selectMenu/list">
+                <div property="columns">
+                    <div field="name" width="120" headerAlign="center">按钮名称</div>
+                    <div field="url" width="160" headerAlign="center">按钮链接</div>
+                    <div field="icon" width="100" headerAlign="center">图标</div>
+                    <div field="status" width="80" allowSort="true" renderer="onGenderRenderer" align="center" headerAlign="center">是否启用</div>
+                    <div field="create_date" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true">创建日期</div>
                 </div>
             </div>  
         </div>
@@ -62,6 +48,16 @@
 </div>
 <script type="text/javascript">
 		mini.parse();
+        var tree = mini.get("tree1");
+        var grid = mini.get("grid1");
+        tree.on("nodeselect", function (e) {
+            if (e.isLeaf) {
+                grid.load({ m_id: e.node.m_id });
+            } else {
+                mini.alert("请选择一个节点！");
+            }
+        });
+
         function addZtree(e) {
         	var tree = mini.get("tree1");
             var row = tree.getSelectedNode();
