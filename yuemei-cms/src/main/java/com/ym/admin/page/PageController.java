@@ -24,46 +24,46 @@ public class PageController {
 	//查询用户列表
 	@RequestMapping("/user/slectByPage")
 	public String selectUserPage(){
-		return "/user/user_list";
+		return "user/user_list";
 	}
 	
 	//添加用户列表
 	@RequestMapping("/user/addUserPage")
 	public String addUserPage(){
-		return "/user/user_add";
+		return "user/user_add";
 	}
 	
 	//部门列表ZTree
 	@RequestMapping("/department/slectByTree")
 	public String slectByTree(){
-		return "/common/department";
+		return "common/department";
 	}
 	
 	//数据字典列表
 	@RequestMapping("/dictionary/slectByPage")
 	public String slectByDictionaryPage(){
-		return "/common/dictionary";
+		return "common/dictionary";
 	}
 	//添加数据字典
 	@RequestMapping("/dictionary/addDictionaryPage")
 	public String addDictionaryPage(){
-		return "/common/dictionary_add";
+		return "common/dictionary_add";
 	}
 	//编辑数据字典
 	@RequestMapping("/dictionary/editDictionaryPage")
 	public String editDictionaryPage(){
-		return "/common/dictionary_add";
+		return "common/dictionary_add";
 	}
 	
 	//系统菜单
 	@RequestMapping("/sys_menu/slectByTree")
 	public String slectSysMenuByTree(){
-		return "/menu/sys_menu";
+		return "menu/sys_menu";
 	}
 	
 	//添加系统的菜单
 	@RequestMapping("/sysMenu/addTree")
 	public String addSysMenuByTree(){
-		return "/menu/sys_menu_add";
+		return "menu/sys_menu_add";
 	}	
 }
