@@ -5,6 +5,7 @@ import java.util.List;
 import com.ym.admin.entity.Department;
 import com.ym.admin.entity.Dictionary;
 import com.ym.admin.entity.SysMenu;
+import com.ym.admin.entity.SysUser;
 
 public interface CommonService {
 
@@ -19,4 +20,6 @@ public interface CommonService {
 	SysMenu selectSysMenuById(String id);
 
     void deleteTreeById(String id);
+	
+    List<SysUser> selectMenuByPrentIdList(String m_id);
 }

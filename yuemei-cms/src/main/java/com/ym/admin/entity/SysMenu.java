@@ -3,13 +3,14 @@ package com.ym.admin.entity;
 import java.io.Serializable;
 import java.util.Date;
 import com.alibaba.fastjson.annotation.JSONField;
+import com.ym.common.page.PageVO;
 
 /**
  * 系统菜单的实体类
  * @author Sven
  *
  */
-public class SysMenu implements Serializable{
+public class SysMenu extends PageVO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	

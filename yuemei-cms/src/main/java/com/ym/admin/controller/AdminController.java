@@ -24,11 +24,10 @@ public class AdminController {
 	/**
 	 * 用户列表
 	 * @param sysUser
-	 * @param pageResult
 	 * @return
 	 */
 	@RequestMapping(value="/user/slectByUser",method = RequestMethod.POST)
-	public String selectByList(SysUser sysUser,PageResult pageResult){
+	public String selectByList(SysUser sysUser){
 		if (StringUtils.isNoneBlank(sysUser.getSortField()) && StringUtils.isNotBlank(sysUser.getSortOrder())) {
 			PageHelper.orderBy(sysUser.getSortField()+" "+sysUser.getSortOrder());
 		}else{
@@ -64,11 +63,10 @@ public class AdminController {
 	
 	/**
 	 * 数据字段
-	 * @param pageResult
 	 * @return
 	 */
 	@RequestMapping(value="/dictionary/slectByDictionary",method = RequestMethod.POST)
-	public String slectByDictionary(Dictionary dictionary,PageResult pageResult){
+	public String slectByDictionary(Dictionary dictionary){
 		if (StringUtils.isNoneBlank(dictionary.getSortField()) && StringUtils.isNotBlank(dictionary.getSortOrder())) {
 			PageHelper.orderBy(dictionary.getSortField()+" "+dictionary.getSortOrder());
 		}else{

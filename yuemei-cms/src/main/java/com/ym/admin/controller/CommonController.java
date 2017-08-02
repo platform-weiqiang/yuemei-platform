@@ -2,8 +2,10 @@ package com.ym.admin.controller;
 
 import java.util.List;
 
+import com.github.pagehelper.PageHelper;
 import com.ym.admin.entity.SysUser;
 import com.ym.common.page.PageResult;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -91,13 +93,18 @@ public class CommonController {
 	/**
 	 * 根据树的节点查询对应的按钮
 	 * @param sysMenu
-	 * @param pageResult
 	 * @return
 	 */
 	@RequestMapping(value = "/selectMenu/list",method = RequestMethod.POST)
-	public String selectMenu(SysMenu sysMenu, PageResult pageResult){
-		System.out.println(sysMenu.getM_id());
-		return "";
+	public String selectMenu(SysMenu sysMenu){
+		if (StringUtils.isNoneBlank(sysMenu.getSortField()) && StringUtils.isNotBlank(sysMenu.getSortOrder())) {
+			PageHelper.orderBy(sysMenu.getSortField()+" "+sysMenu.getSortOrder());
+		}else{
+			PageHelper.orderBy("create_date desc");
+		}
+		PageHelper.startPage(sysMenu.getPageIndex()+1,sysMenu.getPageSize());
+		List<SysUser> list=commonService.selectMenuByPrentIdList(sysMenu.getM_id());
+		return PageResult.result(list);
 	}
 	
 }

@@ -52,7 +52,7 @@
 		WHERE m_id=#{m_id}
 	</update>
 
-
-
-
+	<select id="selectMenuByPrentIdList" parameterType="java.lang.String" resultType="com.ym.admin.entity.SysMenu">
+		SELECT * FROM sys_menu WHERE parent_id=#{m_id}
+	</select>
 </mapper>

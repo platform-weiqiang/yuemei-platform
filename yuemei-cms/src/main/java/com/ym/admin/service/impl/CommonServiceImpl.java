@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.ym.admin.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ym.admin.entity.Department;
@@ -88,6 +89,11 @@ public class CommonServiceImpl implements CommonService {
 			}
 		}
 		return str;
+	}
+
+	@Override
+	public List<SysUser> selectMenuByPrentIdList(String m_id) {
+		return commonMapper.selectMenuByPrentIdList(m_id);
 	}
 
 }
