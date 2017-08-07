@@ -43,7 +43,6 @@ public class CommonServiceImpl implements CommonService {
 			SysMenu sysMenuNode=commonMapper.selectSysMenuById(sysMenu.getM_id());
 			sysMenu.setM_id(UUIDUtil.uuid());
 			sysMenu.setNum(sysMenuNode.getNum()+1);
-			sysMenu.setIsmenu(1);
 			sysMenu.setIsopen(1);
 			sysMenu.setCreate_date(new Date());
 			sysMenu.setParent_id(sysMenuNode.getParent_id());
@@ -53,7 +52,6 @@ public class CommonServiceImpl implements CommonService {
 			SysMenu sysMenuNode=commonMapper.selectSysMenuById(sysMenu.getM_id());
 			sysMenu.setM_id(UUIDUtil.uuid());
 			sysMenu.setNum(sysMenuNode.getNum()+1);
-			sysMenu.setIsmenu(1);
 			sysMenu.setIsopen(1);
 			sysMenu.setCreate_date(new Date());
 			sysMenu.setParent_id(sysMenuNode.getM_id());

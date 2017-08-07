@@ -9,6 +9,7 @@
     <form id="form1" method="post">
         <input name="m_id" class="mini-hidden" />
         <input name="nodeDataType" class="mini-hidden"/>
+        <input name="ismenu" class="mini-hidden"/>
         <div style="padding-left:11px;padding-bottom:5px;">
             <table style="table-layout:fixed;">
                 <tr>
@@ -16,16 +17,12 @@
                     <td style="width:150px;">    
                         <input name="name" class="mini-textbox" required="true"  emptyText="请输入名称"/>
                     </td>
-                    <td style="width:40px;">图片：</td>
-                    <td style="width:150px;">    
-                      	<input name="icon" class="mini-textbox" required="true"  emptyText="请输入编码"/>
+                    <td style="width:40px;">链接：</td>
+                    <td style="width:150px;">
+                        <input name="url" class="mini-textbox" required="true"  emptyText="请输入链接"/>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:40px;">链接：</td>
-                    <td style="width:150px;">    
-                        <input name="url" class="mini-textbox" required="true"  emptyText="请输入链接"/>
-                    </td>
                     <td style="width:40px;">状态：</td>
 	                <td>                        
 	                    <select name="status" class="mini-radiobuttonlist">
@@ -33,6 +30,10 @@
 	                        <option value="0">不启用</option>
 	                    </select>
 	                </td>
+                    <td style="width:40px;" id="btnEdit1">图片：</td>
+                    <td style="width:150px;">
+                        <div id="btnEdit2" name="icon" class="mini-buttonedit" emptyText="请选择图标" onbuttonclick="onButtonEdit"/>
+                    </td>
                 </tr>
                <tr>
 	                <td >备注：</td>
@@ -73,6 +74,10 @@
         function SetData(data) {
             data = mini.clone(data);
             var o = mini.decode(data);
+            if(o.ismenu==1){
+               $("#btnEdit1").text('');
+               $("#btnEdit2").hide();
+            }
             form.setData(o);
             form.setChanged(false);
             if (data.action == "edit") {

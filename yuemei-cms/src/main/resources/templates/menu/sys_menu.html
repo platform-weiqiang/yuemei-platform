@@ -69,11 +69,11 @@
                     title: "新增菜单", width: 420, height: 200,
                     onload: function () {
                         var iframe = this.getIFrameEl();
-                        var data = { action: "new", m_id:node.m_id,nodeDataType:2,status:1};
+                        var data = { action: "new", m_id:node.m_id,nodeDataType:2,status:1,ismenu:0};
                         iframe.contentWindow.SetData(data);
                     },
                     ondestroy: function (action) {
-                        tree.reload();
+                        grid.reload();
                     }
                 });
             } else {
@@ -95,7 +95,7 @@
                     title: "新增菜单", width: 420, height: 200,
                     onload: function () {
                         var iframe = this.getIFrameEl();
-                        var data = { action: "new", m_id:row.m_id,nodeDataType:1,status:1};
+                        var data = { action: "new", m_id:row.m_id,nodeDataType:1,status:1,ismenu:1};
                         iframe.contentWindow.SetData(data);
                     },
                     ondestroy: function (action) {
@@ -115,7 +115,7 @@
                     title: "新增菜单", width: 420, height: 200,
                     onload: function () {
                         var iframe = this.getIFrameEl();
-                        var data = { action: "new", m_id:row.m_id,nodeDataType:2,status:1};
+                        var data = { action: "new", m_id:row.m_id,nodeDataType:2,status:1,ismenu:1};
                         iframe.contentWindow.SetData(data);
                     },
                     ondestroy: function (action) {
